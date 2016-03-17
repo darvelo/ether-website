@@ -1,8 +1,8 @@
 import { RootApp, makeOutlet } from 'ether';
 
-import RootRoute from 'root-route';
-import TwitterRoute from 'twitter-route';
-import WelcomeRoute from 'welcome-route';
+import RootRoute from './root-route';
+import TwitterRoute from './twitter-route';
+import URLRoute from './url-route';
 
 class MyRootApp extends RootApp {
     expectedOutlets() {
@@ -13,6 +13,10 @@ class MyRootApp extends RootApp {
             el: outlets.main.get(),
             classNames: ['twitter-app'],
             append: [
+                outlets.url = makeOutlet({
+                    tagName: 'section',
+                    classNames: ['url'],
+                }),
                 outlets.root = makeOutlet({
                     tagName: 'section',
                     classNames: ['root'],
@@ -21,10 +25,6 @@ class MyRootApp extends RootApp {
                     tagName: 'section',
                     classNames: ['tweet-container'],
                 }),
-                outlets.welcome = makeOutlet({
-                    tagName: 'section',
-                    classNames: ['welcome'],
-                }),
             ]
         });
 
@@ -32,14 +32,13 @@ class MyRootApp extends RootApp {
     }
     mount() {
         return {
-            '':
-                RootRoute
-                    .addresses('root')
-                    .outlets('root')
-                    .setup(() => ({
-                        username: 'Interior',
-                        tweetId:  '463440424141459456',
-                    })),
+            '': RootRoute
+                .addresses('root')
+                .outlets('root')
+                .setup(() => ({
+                    username: 'neiltyson',
+                    tweetId:  '709051416564912128',
+                })),
             '{twitter_username=\\w+}/{tweet_id=\\d+}':
                 TwitterRoute
                     .addresses('twitter')
@@ -48,10 +47,9 @@ class MyRootApp extends RootApp {
     }
     mountConditionals() {
         return {
-            '*':
-                WelcomeRoute
-                    .addresses('welcome')
-                    .outlets('welcome'),
+            '*': URLRoute
+                    .addresses('url')
+                    .outlets('url'),
         };
     }
 }
