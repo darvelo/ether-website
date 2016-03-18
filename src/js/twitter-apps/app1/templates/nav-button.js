@@ -1,5 +1,5 @@
 export default function tweetButton(href, title) {
     let div = document.createElement('div');
-    div.innerHTML = `<a class="tweet-button" href="${href}">${title}</a>`;
+    div.innerHTML = `<a class="nav-button" href="${href}">${title}</a>`;
     return div.firstChild;
 }

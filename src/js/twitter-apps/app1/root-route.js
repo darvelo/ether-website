@@ -1,5 +1,6 @@
 import { Route } from 'ether';
-import tweetButton from './templates/tweet-button';
+import navButton from './templates/nav-button';
+import onTransitionEnd from './utils/on-transitionend';
 
 class RootRoute extends Route {
     expectedAddresses() {
@@ -15,17 +16,23 @@ class RootRoute extends Route {
         return [];
     }
     expectedSetup(setupVal) {
-        if (typeof setupVal !== 'object' ||
-            typeof setupVal.username !== 'string' ||
-            typeof setupVal.tweetId  !== 'string')
-        {
-            throw new TypeError('Twitter data was not setup properly.');
+        if (!Array.isArray(setupVal)) {
+            throw new Error('RootRoute#setup() expected an array.');
         }
+        setupVal.forEach(item => {
+            if (Array.isArray(item) ||
+                typeof item !== 'object' ||
+                typeof item.username !== 'string' ||
+                typeof item.tweetId  !== 'string')
+            {
+                throw new TypeError('Twitter data was not setup properly.');
+            }
+        });
     }
 
     // initialization code
     init(setupVal) {
-        this.model = setupVal;
+        this.data = setupVal;
     }
 
     template(model) {
@@ -42,7 +49,12 @@ class RootRoute extends Route {
             }
         };
         let href = this.linkTo('twitter', model, opts);
-        return tweetButton(href, 'Get a Tweet!');
+        return navButton(href, 'Get a random Tweet!');
+    }
+
+    getRandomTweet() {
+        let idx = Math.floor(Math.random() * this.data.length);
+        return this.data[idx];
     }
 
     // render-cycle functions
@@ -50,12 +62,16 @@ class RootRoute extends Route {
     // and there are never any queryParams during the
     // lifecycle of the Ether app, all three arguments
     // in `prerender()` and in `render()` will always be `null`
-    prerender(params, queryParams, diffs) { }
-    deactivate() { }
-    render(params, queryParams, diffs) {
-        this.outlets.root.empty();
-        this.outlets.root.append(this.template(this.model));
+    prerender(params, queryParams, diffs) {
+        let template = this.template(this.getRandomTweet());
+        this.outlets.root.append(template);
     }
+    deactivate() {
+        onTransitionEnd(this.outlets.root.get(), () => {
+            this.outlets.root.empty();
+        });
+    }
+    render(params, queryParams, diffs) { }
 }
 
 export default RootRoute;

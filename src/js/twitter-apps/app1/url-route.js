@@ -1,5 +1,4 @@
 import { Route } from 'ether';
-
 class URLRoute extends Route {
     expectedAddresses() {
         return ['url'];
