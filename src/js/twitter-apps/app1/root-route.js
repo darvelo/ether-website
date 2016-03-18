@@ -1,6 +1,6 @@
 import { Route } from 'ether';
 import navButton from './templates/nav-button';
-import onTransitionEnd from './utils/on-transitionend';
+import onAnimationEnd from './utils/on-animationend';
 
 class RootRoute extends Route {
     expectedAddresses() {
@@ -16,45 +16,47 @@ class RootRoute extends Route {
         return [];
     }
     expectedSetup(setupVal) {
-        if (!Array.isArray(setupVal)) {
-            throw new Error('RootRoute#setup() expected an array.');
+        let tweets = setupVal.tweets;
+        if (!Array.isArray(tweets)) {
+            throw new Error('RootRoute#setup() expected an array of tweets.');
         }
-        setupVal.forEach(item => {
+        tweets.forEach(item => {
             if (Array.isArray(item) ||
                 typeof item !== 'object' ||
                 typeof item.username !== 'string' ||
                 typeof item.tweetId  !== 'string')
             {
-                throw new TypeError('Twitter data was not setup properly.');
+                throw new TypeError('Tweets data was not setup properly.');
             }
         });
+        if (typeof setupVal.address !== 'string') {
+            throw new Error('RootRoute#setup() expected an address to link to with tweet data.');
+        }
+        if (typeof setupVal.transformer !== 'function') {
+            throw new Error('RootRoute#setup() expected a function to map tweet data to the twitter route params.');
+        }
     }
 
     // initialization code
     init(setupVal) {
-        this.data = setupVal;
+        this.tweets = setupVal.tweets;
+        this.transformer = setupVal.transformer;
+        this.twitterAddress = setupVal.address;
     }
 
     template(model) {
         let opts = {
-            // map the destination route's param
-            // names to the model's properties
-            transformer: paramName => {
-                switch(paramName) {
-                case 'twitter_username':
-                    return 'username';
-                case 'tweet_id':
-                    return 'tweetId';
-                }
-            }
+            // map the twitter route's param names
+            // to the tweet models' properties
+            transformer: this.transformer
         };
-        let href = this.linkTo('twitter', model, opts);
+        let href = this.linkTo(this.twitterAddress, model, opts);
         return navButton(href, 'Get a random Tweet!');
     }
 
     getRandomTweet() {
-        let idx = Math.floor(Math.random() * this.data.length);
-        return this.data[idx];
+        let idx = Math.floor(Math.random() * this.tweets.length);
+        return this.tweets[idx];
     }
 
     // render-cycle functions
@@ -67,8 +69,11 @@ class RootRoute extends Route {
         this.outlets.root.append(template);
     }
     deactivate() {
-        onTransitionEnd(this.outlets.root.get(), () => {
-            this.outlets.root.empty();
+        return new Promise(resolve => {
+            onAnimationEnd(this.outlets.root.get(), () => {
+                this.outlets.root.empty();
+                resolve();
+            });
         });
     }
     render(params, queryParams, diffs) { }

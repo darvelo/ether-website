@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/darvelo/ether-website#readme",
   "scripts": {
-    "build": "BABEL_ENV=build node rollup.js"
+    "js": "BABEL_ENV=build node rollup.js",
+    "css": "./node_modules/postcss-cli/bin/postcss -u postcss-cssnext -d ./public/styles ./src/css/twitter-apps/*.css",
+    "watch-css": "./node_modules/postcss-cli/bin/postcss -w -u postcss-cssnext -d ./public/styles ./src/css/twitter-apps/*.css"
   },
   "devDependencies": {
     "babel": "^6.5.2",

@@ -4,8 +4,29 @@ import TwitterRoute from './twitter-route';
 import URLRoute from './url-route';
 import tweets from './data/tweets';
 
-function filterObjects(array) {
-    return array.filter(item => typeof item === 'object' && !Array.isArray(item));
+let twitterAddress = 'twitter';
+
+function addTweets() {
+    return {tweets};
+}
+
+function addTwitterAddress(setup) {
+    setup.address = twitterAddress;
+    return setup;
+}
+
+function addTweetTransformer(setup) {
+    // map the twitter route's param names
+    // to the tweet models' properties
+    setup.transformer = function(paramName) {
+        switch(paramName) {
+        case 'twitter_username':
+            return 'username';
+        case 'tweet_id':
+            return 'tweetId';
+        }
+    };
+    return setup;
 }
 
 class MyRootApp extends RootApp {
@@ -42,10 +63,10 @@ class MyRootApp extends RootApp {
             '': RootRoute
                     .addresses('root')
                     .outlets('root')
-                    .setup(() => tweets, t => filterObjects(t)),
+                    .setup(addTweets, addTwitterAddress, addTweetTransformer),
             '{twitter_username=\\w+}/{tweet_id=\\d+}':
                 TwitterRoute
-                    .addresses('twitter')
+                    .addresses(twitterAddress)
                     .outlets('tweet'),
         };
     }

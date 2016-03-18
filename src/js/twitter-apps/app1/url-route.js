@@ -15,13 +15,16 @@ class URLRoute extends Route {
 
     // initialization code
     init() {
-        this.h1 = document.createElement('h1');
-        this.outlets.url.append(this.h1);
+        let p = document.createElement('p');
+        p.className = 'pathname';
+        p.innerHTML = `<span class="prefix">pathname</span><span class="value"></span>`;
+        this.outlets.url.append(p);
+        this.text = p.querySelector('.value');
     }
 
     // addresses handlers
     receive(url) {
-        this.h1.textContent = `pathname is: ${url}`;
+        this.text.textContent = `${url}`;
     }
 }
 

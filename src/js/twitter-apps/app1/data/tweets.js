@@ -11,5 +11,4 @@ export default [
         username: 'IronMaiden',
         tweetId:  '710136681685385216',
     },
-    ['invalid'],
 ];

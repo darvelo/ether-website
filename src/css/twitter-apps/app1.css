@@ -1,0 +1,122 @@
+.twitter-app {
+    position: relative;
+    width: 700px;
+    height: 200px;
+    background: rgb(228, 201, 255);
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 3px gray(138);
+}
+
+.twitter-app .nav-button {
+    padding: 14px 20px;
+    color: white;
+    background-color: hsl(273, 65%, 55%);
+    text-decoration: none;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: 0 8px rgb(119, 25, 149), inset 0 0 10px rgba(237, 194, 255, 0.33);
+
+    &:active {
+        position: relative;
+        top: 5px;
+        box-shadow: 0 3px rgb(119, 25, 149), inset 0 0 10px rgba(237, 194, 255, 0.33);
+    }
+}
+
+@keyframes bounce-down {
+    0% {
+        top: 30px;
+        opacity: 1;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        top: 120%;
+    }
+}
+
+@keyframes bounce-up {
+    0% {
+        top: 120%;
+    }
+    20% {
+        opacity: 0;
+    }
+    100% {
+        top: 30px;
+        opacity: 1;
+    }
+}
+
+@custom-selector :--route .twitter-app .root, .twitter-app .tweet-container;
+
+:--route {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 30px);
+
+    &.ether-prerendering,
+    &.ether-prerendered,
+    &.ether-deactivated {
+        display: none;
+    }
+
+    &.ether-deactivating {
+        animation: 0.4s cubic-bezier(0.60, -.50, .50, 1) forwards bounce-down;
+    }
+
+    &.ether-rendering:not(.ether-rendered),
+    &.ether-rendered {
+        animation: 0.4s cubic-bezier(.50, 0, 0.40, 1.50) bounce-up;
+    }
+}
+
+/* URL Route */
+
+.twitter-app .url {
+    position: relative;
+    z-index: 1;
+    height: 30px;
+}
+
+.twitter-app .url .pathname {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+
+    & span {
+        padding: 5px;
+        flex: auto;
+    }
+
+    & .prefix {
+        background: color(white blackness(+10%));
+        flex-basis: max-content;
+    }
+
+    & .value {
+        background: white;
+        flex: calc(100%);
+    }
+}
+
+/* Root Route */
+
+.twitter-app .root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Twitter Route */
+
+.twitter-app .tweet-container .nav-button {
+    display: block;
+    margin: 0 auto;
+    max-width: 50px;
+    text-align: center;
+}
