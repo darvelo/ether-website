@@ -89,13 +89,16 @@
     margin: 0;
 
     & span {
-        padding: 5px;
         flex: auto;
+        padding: 5px;
+        font-family: 'Trebuchet MS', Verdana, sans-serif;
     }
 
     & .prefix {
-        background: color(white blackness(+10%));
         flex-basis: max-content;
+        background: color(white blackness(+10%));
+        font-style: italic;
+        padding: 5px 10px;
     }
 
     & .value {
