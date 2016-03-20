@@ -80,18 +80,17 @@
 .twitter-app .url {
     position: relative;
     z-index: 1;
-    height: 30px;
 }
 
 .twitter-app .url .pathname {
     display: flex;
-    justify-content: center;
     margin: 0;
+    height: 30px;
 
     & span {
         flex: auto;
         padding: 5px;
-        font-family: 'Trebuchet MS', Verdana, sans-serif;
+        font: 16px 'Trebuchet MS', Verdana, sans-serif;
     }
 
     & .prefix {
