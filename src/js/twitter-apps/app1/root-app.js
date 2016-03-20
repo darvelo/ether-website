@@ -29,13 +29,13 @@ function addTweetTransformer(setup) {
     return setup;
 }
 
-class MyRootApp extends RootApp {
+class TwitterRootApp extends RootApp {
     expectedOutlets() {
-        return ['main'];
+        return ['twitter'];
     }
     createOutlets(outlets) {
-        outlets.main = makeOutlet({
-            el: outlets.main.get(),
+        outlets.twitter = makeOutlet({
+            el: outlets.twitter.get(),
             classNames: ['twitter-app'],
             append: [
                 outlets.url = makeOutlet({
@@ -55,7 +55,6 @@ class MyRootApp extends RootApp {
                 }),
             ]
         });
-
         return outlets;
     }
     mount() {
@@ -79,4 +78,4 @@ class MyRootApp extends RootApp {
     }
 }
 
-export default MyRootApp;
+export default TwitterRootApp;

@@ -9,6 +9,7 @@ def twitter_json(twitter_username, tweet_id):
     if twitter_username in tweets and tweet_id in tweets[twitter_username]:
         data = tweets[twitter_username][tweet_id]
     else:
+        print('searching for: ', twitter_username, tweet_id)
         url = 'https://api.twitter.com/1/statuses/oembed.json?url=https://twitter.com/{}/status/{}&omit_script=true'.format(twitter_username, tweet_id)
         response = requests.get(url)
         if 200 <= response.status_code < 400:
