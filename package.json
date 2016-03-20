@@ -18,8 +18,8 @@
   "homepage": "https://github.com/darvelo/ether-website#readme",
   "scripts": {
     "js": "BABEL_ENV=build node rollup.js",
-    "css": "./node_modules/postcss-cli/bin/postcss -u postcss-cssnext -d ./public/styles/apps ./src/css/twitter-apps/*.css",
-    "watch-css": "./node_modules/postcss-cli/bin/postcss -w -u postcss-cssnext -d ./public/styles/apps ./src/css/twitter-apps/*.css"
+    "css": "./node_modules/postcss-cli/bin/postcss -u postcss-cssnext -d ./public/styles ./src/css/*.css",
+    "watch-css": "./node_modules/postcss-cli/bin/postcss -w -u postcss-cssnext -d ./public/styles ./src/css/**/*.css"
   },
   "devDependencies": {
     "babel": "^6.5.2",
