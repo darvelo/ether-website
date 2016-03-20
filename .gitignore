@@ -4,7 +4,6 @@ bower_components
 __pycache__
 dist
 built
-public
 .tmp
 .sass-cache
 *.secret.json
@@ -31,3 +30,5 @@ Session.vim
 *.sqlite3
 
 # this project
+public/scripts/apps
+public/styles

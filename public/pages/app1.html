@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" href="/styles/apps/app1.css" />
+        <title>My Twitter App</title>
+    </head>
+    <body>
+        <div id="twitter"></div>
+        <script src="/scripts/vendor/ether.global.js"></script>
+        <script src="/scripts/apps/app1.js"></script>
+        <script>
+            function changeURLInfo(event, promise) {
+                var self = this;
+                promise.then(function() {
+                    self.sendTo('url', self.fullUrl());
+                });
+            }
+            var myApp = new App1({
+                windowLoad: changeURLInfo,
+                history: changeURLInfo,
+                interceptLinks: function all(event, promise) {
+                    changeURLInfo.call(this, event, promise);
+                },
+                basePath: '/app1',
+                outlets: {
+                    twitter: new Ether.MutableOutlet(document.getElementById('twitter')),
+                },
+            }).start();
+        </script>
+    </body>
+</html>

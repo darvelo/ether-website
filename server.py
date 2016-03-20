@@ -25,7 +25,7 @@ def twitter_json(twitter_username, tweet_id):
 @app.route('/app1/', defaults={'path': ''})
 @app.route('/app1/<path:path>')
 def app1(path):
-    return app.send_static_file('app1/index.html')
+    return app.send_static_file('pages/app1.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
