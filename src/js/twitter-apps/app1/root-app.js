@@ -6,6 +6,8 @@ import tweets from './data/tweets';
 
 let twitterAddress = 'twitter';
 
+/* Root Route Setup */
+
 function addTweets() {
     return {tweets};
 }
@@ -27,6 +29,14 @@ function addTweetTransformer(setup) {
         }
     };
     return setup;
+}
+
+/* Twitter Route Setup */
+
+function addButtonData() {
+    return {
+        linkTo: {address: 'root', text: 'Back'},
+    };
 }
 
 class TwitterRootApp extends RootApp {
@@ -66,7 +76,8 @@ class TwitterRootApp extends RootApp {
             '{twitter_username=\\w+}/{tweet_id=\\d+}':
                 TwitterRoute
                     .addresses(twitterAddress)
-                    .outlets('tweet'),
+                    .outlets('tweet')
+                    .setup(addButtonData),
         };
     }
     mountConditionals() {

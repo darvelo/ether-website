@@ -16,12 +16,31 @@ class TwitterRoute extends Route {
     expectedParams() {
         return ['twitter_username', 'tweet_id'];
     }
+    expectedSetup(setupVal) {
+        if (typeof setupVal === 'object' && typeof setupVal.linkTo === 'object') {
+            if (typeof setupVal.linkTo.address !== 'string') {
+                throw new Error('TwitterRoute setup: linkTo.address not a string');
+            }
+            if (typeof setupVal.linkTo.text !== 'string') {
+                throw new Error('TwitterRoute setup: linkTo.text not a string');
+            }
+            if (setupVal.linkTo.params && typeof setupVal.linkTo.params !== 'object') {
+                throw new Error('TwitterRoute setup: linkTo.params not an object');
+            }
+        }
+    }
 
-    init() {
+    init(setupVal) {
+        // create a view that shows the tweet
         this.view = new TweetView();
-        let href = this.linkTo('root');
         this.outlets.tweet.append(this.view.el);
-        this.outlets.tweet.append(navButton(href, 'Back'));
+
+        // create nav button based on setup
+        if (typeof setupVal === 'object' && setupVal.linkTo) {
+            let buttonData = setupVal.linkTo;
+            let href = this.linkTo(buttonData.address, buttonData.params);
+            this.outlets.tweet.append(navButton(href, buttonData.text));
+        }
     }
 
     // render-cycle functions
