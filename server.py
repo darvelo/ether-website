@@ -1,6 +1,6 @@
 import requests
-from flask import Flask, json, jsonify
-app = Flask(__name__, static_folder='public', static_url_path='')
+from flask import Flask, json, jsonify, send_from_directory
+app = Flask(__name__, static_folder='public', static_url_path='/public')
 
 tweets = {}
 
@@ -26,6 +26,11 @@ def twitter_json(twitter_username, tweet_id):
 @app.route('/app1/<path:path>')
 def app1(path):
     return app.send_static_file('pages/app1.html')
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    return app.send_static_file('pages/main.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

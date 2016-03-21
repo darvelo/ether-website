@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" href="/public/styles/main.css" />
+        <link rel="stylesheet" href="/public/styles/app.css" />
+        <title>Ether</title>
+    </head>
+    <body>
+        <section id="main" role="main"></section>
+        <script src="/public/scripts/vendor/ether.global.js"></script>
+        <script src="/public/scripts/main.js"></script>
+        <script>
+            function all(event, promise) {
+                var self = this;
+                promise.then(function() {
+                    console.log('good url', self.fullUrl());
+                }, function(err) {
+                    console.log('bad url', self.fullUrl(), err);
+                });
+            }
+            var mainApp = new MainApp({
+                debug: true,
+                history: all,
+                windowLoad: all,
+                interceptLinks: all,
+                outlets: {
+                    main: new Ether.MutableOutlet(document.getElementById('main')),
+                },
+            }).start();
+        </script>
+    </body>
+</html>
