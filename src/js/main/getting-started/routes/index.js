@@ -18,6 +18,7 @@ class GettingStartedIndexRoute extends Route {
         link.href = this.linkTo('index');
         link.textContent = 'To Root';
         this.outlets.gettingStarted.append(link);
+        this.sendTo('navbar', 'setActiveLink', this.expectedAddresses());
     }
 }
 

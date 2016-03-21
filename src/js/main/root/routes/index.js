@@ -19,6 +19,7 @@ class IndexRoute extends Route {
         link.href = this.linkTo('gettingStartedIndex');
         link.textContent = 'To Getting Started';
         this.outlets.index.append(link);
+        this.sendTo('navbar', 'setActiveLink', this.expectedAddresses());
     }
 }
 
