@@ -2,7 +2,7 @@ import { Route } from 'ether';
 
 class IndexRoute extends Route {
     expectedAddresses() {
-        return ['index'];
+        return [':.index'];
     }
     addressesHandlers() {
         return [function(){}];
@@ -16,10 +16,10 @@ class IndexRoute extends Route {
         h1.textContent = 'Hello, world!';
         this.outlets.index.append(h1);
         let link = document.createElement('a');
-        link.href = this.linkTo('gettingStartedIndex');
+        link.href = this.linkTo(':gs.index');
         link.textContent = 'To Getting Started';
         this.outlets.index.append(link);
-        this.sendTo('navbar', 'setActiveLink', this.expectedAddresses());
+        this.sendTo(':.navbar', 'setActiveLink', this.expectedAddresses());
     }
 }
 

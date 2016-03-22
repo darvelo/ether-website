@@ -7,11 +7,11 @@ function navbarLinksData() {
     return [
         {
             text: 'Home',
-            address: 'index',
+            address: ':.index',
         },
         {
             text: 'Getting Started',
-            address: 'gettingStartedIndex',
+            address: ':gs.index',
         },
     ];
 }
@@ -35,7 +35,7 @@ class EtherWebsite extends RootApp {
                     classNames: ['index'],
                     mutable: true,
                 }),
-                outlets.gettingStarted = makeOutlet({
+                outlets.gs = makeOutlet({
                     tagName: 'section',
                     classNames: ['getting-started'],
                     mutable: true,
@@ -47,19 +47,19 @@ class EtherWebsite extends RootApp {
     mount() {
         return {
             '': IndexRoute
-                    .addresses('index')
+                    .addresses(':.index')
                     .outlets('index'),
             'getting-started':
                 GettingStartedApp
-                    .addresses('gettingStarted')
-                    .outlets('gettingStarted'),
+                    .addresses(':gs')
+                    .outlets('gs'),
         };
     }
     mountConditionals() {
         return {
             '*':
                 NavBarRoute
-                    .addresses('navbar')
+                    .addresses(':.navbar')
                     .outlets('navbar')
                     .setup(navbarLinksData),
         };

@@ -25,19 +25,19 @@ import IndexRoute from './routes/index';
         // <iframe id="app1-iframe" src="/app1/"></iframe>
 class GettingStartedApp extends App {
     expectedAddresses() {
-        return ['gettingStarted'];
+        return [':gs'];
     }
     addressesHandlers() {
         return [function(){}];
     }
     expectedOutlets() {
-        return ['gettingStarted'];
+        return ['gs'];
     }
     mount() {
         return {
             '': IndexRoute
-                    .addresses('gettingStartedIndex')
-                    .outlets('gettingStarted'),
+                    .addresses(':gs.index')
+                    .outlets('gs'),
         };
     }
 }

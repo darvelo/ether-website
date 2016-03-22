@@ -3,7 +3,7 @@ import template from '../templates/navbar';
 
 class NavBarRoute extends Route {
     expectedAddresses() {
-        return ['navbar'];
+        return [':.navbar'];
     }
     addressesHandlers() {
         return ['receive'];
@@ -17,9 +17,9 @@ class NavBarRoute extends Route {
             linksData,
             linkTo: this.linkTo.bind(this)
         };
-        let element = this.outlets.navbar.get();
-        element.innerHTML = template(ctx);
-        this.listItems = Array.prototype.slice.call(element.querySelectorAll('li'));
+        let outlet = this.outlets.navbar;
+        outlet.innerHTML = template(ctx);
+        this.listItems = Array.prototype.slice.call(outlet.querySelectorAll('li'));
     }
 
     receive(message, data) {
