@@ -2,11 +2,15 @@ import os
 from time import sleep
 from threading import Thread
 import requests
-from flask import Flask, json, jsonify, send_from_directory
+from flask import Flask, json, jsonify, send_from_directory, send_file
 from wsserver import ws_server
 
 app = Flask(__name__, static_folder='public', static_url_path='/public')
 tweets = {}
+
+@app.route('/normalize.css')
+def normalize_css():
+    return send_file('./node_modules/normalize.css/normalize.css')
 
 @app.route("/twitter_json/<twitter_username>/<tweet_id>")
 def twitter_json(twitter_username, tweet_id):
