@@ -1,4 +1,5 @@
 import { Route } from 'ether';
+import template from '../templates/index';
 
 class IndexRoute extends Route {
     expectedAddresses() {
@@ -11,14 +12,11 @@ class IndexRoute extends Route {
         return ['index'];
     }
 
+    init() {
+        this.outlets.index.innerHTML = template();
+    }
+
     render() {
-        let h1 = document.createElement('h1');
-        h1.textContent = 'Hello, world!';
-        this.outlets.index.append(h1);
-        let link = document.createElement('a');
-        link.href = this.linkTo(':gs.index');
-        link.textContent = 'To Getting Started';
-        this.outlets.index.append(link);
         this.sendTo(':.navbar', 'setActiveLink', this.expectedAddresses());
     }
 }
