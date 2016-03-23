@@ -2,6 +2,17 @@
 @custom-media --large-viewport (width >= 1200px);
 @custom-selector :--main-pages .index, .getting-started;
 
+@keyframes fade-out {
+   0% {
+      opacity: 1;
+   }
+
+   100% {
+      opacity: 0;
+      display: none;
+   }
+}
+
 * {
    box-sizing: border-box;
 }
@@ -9,12 +20,15 @@
 :root {
    font-size: 16px;
    --navbar-height: 5rem;
+   --main-color: #ff3f00;
+   --secondary-color: #ffca5e;
    --main-color: #006dff;
+   --secondary-color: hsl(250, 80%, 30%);
 }
 
 body {
    padding-top: var(--navbar-height);
-   font-family: Helvetica, sans-serif;
+   font-family: 'Source Sans Pro', 'Open Sans', Helvetica, sans-serif
 }
 
 .container {
@@ -26,7 +40,7 @@ body {
 }
 
 :--main-pages {
-   margin-bottom: 5rem;
+   margin-bottom: 2rem;
 
    &.ether-deactivated {
       display: none;
@@ -44,7 +58,7 @@ body {
    left: 0;
    height: var(--navbar-height);
    background-color: white;
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+   box-shadow: 0 2px 4px gray(0,.2);
 }
 
 .navbar-container {
@@ -53,16 +67,13 @@ body {
    align-items: center;
 }
 
-.navbar-title {
-   margin-left: 20px;
-   color: var(--main-color);
-   font-size: calc(var(--navbar-height) / 3);
-   text-decoration: none;
-}
-
 .navbar-logo {
    display: flex;
    align-items: center;
+
+   color: var(--main-color);
+   font-size: calc(var(--navbar-height) / 3);
+   text-decoration: none;
 
    & img {
       max-height: calc(var(--navbar-height) - 20px);
@@ -82,7 +93,7 @@ body {
 .navbar-list li {
    width: 100%;
    margin-right: 10px;
-   color: color(var(--main-color) blackness(+20%));
+   color: color(var(--main-color) blackness(+10%));
    border-radius: 5px;
    transition: background-color 0.2s ease-out;
 
@@ -113,15 +124,25 @@ body {
    }
 }
 
+.main-footer {
+   margin: 2rem 0;
+}
+
+.main-footer .copyright {
+   padding: 2rem 0;
+   border-top: 1px solid #DDD;
+   text-align: right;
+}
+
+/*********
+ * pages *
+ *********/
+
 /* index */
 
 .intro {
-   padding: 5rem 0 5rem;
-   background: blue linear-gradient(180deg, #ff2323, #ecce2c);
-   background: #006dff;
-   /* background: radial-gradient(ellipse farthest-corner at 45px 45px, #ff3f00 0%, #ffca5e 100%); */
-   /* background: radial-gradient(circle, #ff3f00 0%, #ffca5e 100%); */
-   /* background: radial-gradient(circle at 0% -3% , RGBA(248, 20, 20, 0.8) 0%, RGBA(255, 201, 107, 0.7) 50%, rgba(255, 218, 57, 0.55) 100%), radial-gradient(circle at 90% -3% , #FF1D1D 0%, #FF6300 50%, #e7ff00 100%); */
+   padding: 5rem 0;
+   background: radial-gradient(circle, var(--main-color) 0%, var(--secondary-color) 100%);
    color: white;
 }
 
@@ -131,6 +152,7 @@ body {
 
 .tagline {
    font-size: 3rem;
+   text-shadow: 0 1px 0 gray(0,.1);
 }
 
 .download-button {
@@ -141,13 +163,35 @@ body {
    text-decoration: none;
    font-size: 1.6rem;
    border-radius: 5px;
+   box-shadow: 0 7px 10px gray(0,.2);
    transition: all 0.2s linear;
 
    &:hover {
       background: white;
-      text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.4);
-      color: #006dff;
-      border: 1px solid #006dff;
+      color: var(--main-color);
+      border: 1px solid var(--main-color);
+      text-shadow: 0 -1px 1px var(--secondary-color);
+      box-shadow: 0 3px 5px gray(0,.4);
+   }
+}
+
+.download-choice {
+   display: none;
+   opacity: 0;
+   transition: opacity 1s ease-out;
+
+   & a { margin-right: 5px; }
+   & a:last-child { margin-right: 0; }
+}
+
+.download-links.active {
+   & .download-start {
+      animation: fade-out .2s ease-out forwards;
+   }
+
+   & .download-choice {
+      display: block;
+      opacity: 1;
    }
 }
 
@@ -155,12 +199,26 @@ body {
    padding-top: 1rem;
 
    & h1 {
-      padding-bottom: 15px;
-      border-bottom: 1px solid #DDD;
+      margin-bottom: 5px;
       font-size: 2rem;
       color: #3D3D3D;
       text-align: center;
    }
+
+   & blockquote {
+      margin: 5px 0 10px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #DDD;
+      color: #555;
+      font-size: 1.3em;
+      font-style: italic;
+      text-align: center;
+
+      & .attribution {
+         text-align: right;
+      }
+   }
+
 }
 
 .feature-list {
@@ -179,6 +237,13 @@ body {
 
    & .feature-description {
       width: 70%;
+      color: #777;
+      font-size: 1.2rem;
+   }
+
+   & .feature-title {
+      color: #444;
+      font-size: 1.4rem;
    }
 }
 
