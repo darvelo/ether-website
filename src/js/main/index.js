@@ -2,6 +2,7 @@ import { RootApp, makeOutlet } from 'ether';
 import GettingStartedApp from './apps/getting-started/index';
 import IndexRoute from './routes/index';
 import NavBarRoute from './routes/navbar';
+import FooterRoute from './routes/footer';
 
 function navbarLinksData() {
     return [
@@ -40,6 +41,11 @@ class EtherWebsite extends RootApp {
                     classNames: ['getting-started'],
                     mutable: true,
                 }),
+                outlets.footer = makeOutlet({
+                    tagName: 'footer',
+                    classNames: ['main-footer'],
+                    mutable: true,
+                }),
             ]
         });
         return outlets;
@@ -57,11 +63,15 @@ class EtherWebsite extends RootApp {
     }
     mountConditionals() {
         return {
-            '*':
+            '*': [
                 NavBarRoute
                     .addresses(':.navbar')
                     .outlets('navbar')
                     .setup(navbarLinksData),
+                FooterRoute
+                    .addresses(':.footer')
+                    .outlets('footer'),
+            ],
         };
     }
 }
