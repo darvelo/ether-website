@@ -19,6 +19,7 @@
 
 :root {
    font-size: 16px;
+   overflow-y: scroll;
    --navbar-height: 5rem;
    --main-color: #ff3f00;
    --secondary-color: #ffca5e;
@@ -31,6 +32,7 @@ body {
 
 .container {
    margin: 0 auto;
+   width: 100%;
 
    @media (--large-viewport) {
       width: 1170px;
@@ -141,7 +143,7 @@ body {
 
 .intro {
    padding: 5rem 0;
-   background: radial-gradient(circle, var(--main-color) 0%, var(--secondary-color) 100%);
+   background: var(--main-color) radial-gradient(circle, var(--main-color) 0%, var(--secondary-color) 100%);
    color: white;
 }
 
