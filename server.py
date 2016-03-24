@@ -8,10 +8,6 @@ from wsserver import ws_server
 app = Flask(__name__, static_folder='public', static_url_path='/public')
 tweets = {}
 
-@app.route('/normalize.css')
-def normalize_css():
-    return send_file('./node_modules/normalize.css/normalize.css')
-
 @app.route("/twitter_json/<twitter_username>/<tweet_id>")
 def twitter_json(twitter_username, tweet_id):
     if twitter_username in tweets and tweet_id in tweets[twitter_username]:

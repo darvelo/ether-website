@@ -21,7 +21,7 @@ export default function indexTemplate() {
                 <div class="feature-list">
                     <div class="feature">
                         <div class="feature-icon">
-                            <i class="icon"></i>
+                            <i class="fa fa-fire"></i>
                         </div>
                         <div class="feature-description">
                             <h2 class="feature-title">Minimalistic <em>and</em> Powerful</h2>
@@ -30,7 +30,7 @@ export default function indexTemplate() {
                     </div>
                     <div class="feature">
                         <div class="feature-icon">
-                            <i class="icon"></i>
+                            <i class="fa fa-cubes"></i>
                         </div>
                         <div class="feature-description">
                             <h2 class="feature-title">Library Agnostic</h2>
@@ -41,7 +41,7 @@ export default function indexTemplate() {
                 <div class="feature-list">
                     <div class="feature">
                         <div class="feature-icon">
-                            <i class="icon"></i>
+                            <i class="fa fa-plug"></i>
                         </div>
                         <div class="feature-description">
                             <h2 class="feature-title">Composable, Pluggable Apps</h2>
@@ -50,7 +50,7 @@ export default function indexTemplate() {
                     </div>
                     <div class="feature">
                         <div class="feature-icon">
-                            <i class="icon"></i>
+                            <i class="fa fa-sitemap"></i>
                         </div>
                         <div class="feature-description">
                             <h2 class="feature-title">Routing and Addressing</h2>
@@ -61,7 +61,7 @@ export default function indexTemplate() {
                 <div class="feature-list">
                     <div class="feature">
                         <div class="feature-icon">
-                            <i class="icon"></i>
+                            <i class="fa fa-refresh"></i>
                         </div>
                         <div class="feature-description">
                             <h2 class="feature-title">Asynchronous Render Cycle</h2>
@@ -70,7 +70,7 @@ export default function indexTemplate() {
                     </div>
                     <div class="feature">
                         <div class="feature-icon">
-                            <i class="icon"></i>
+                            <i class="fa fa-support"></i>
                         </div>
                         <div class="feature-description">
                             <h2 class="feature-title">Immediate and Descriptive Errors</h2>

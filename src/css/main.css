@@ -240,25 +240,29 @@ body {
 
 .feature-list {
    display: flex;
-   justify-content: space-between;
+   justify-content: center;
+   margin: 1rem 0 1rem;
 }
 
 .feature {
    display: flex;
-   width: 50%;
+   width: 45%;
 
    & .feature-icon {
-      display: flex;
       width: 20%;
+      color: gray(110);
+      font-size: 3rem;
+      text-align: center;
    }
 
    & .feature-description {
-      width: 70%;
+      width: 75%;
       color: #777;
       font-size: 1.2rem;
    }
 
    & .feature-title {
+      margin-top: 0;
       color: #444;
       font-size: 1.4rem;
    }

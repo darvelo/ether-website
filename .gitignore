@@ -31,5 +31,4 @@ Session.vim
 
 # this project
 public/scripts
-!public/scripts/vendor
 public/styles
