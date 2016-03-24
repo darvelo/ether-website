@@ -20,6 +20,10 @@ class IndexRoute extends Route {
         this.downloadView = new DownloadView(downloadArea);
     }
 
+    prerender() {
+        this.downloadView.reset();
+    }
+
     render() {
         this.sendTo(':.navbar', 'setActiveLink', this.expectedAddresses());
     }
