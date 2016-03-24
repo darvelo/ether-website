@@ -4,11 +4,12 @@ export default function indexTemplate() {
             <section class="container">
                 <p class="lead tagline">Ether is a minimalistic framework<br>for creating modular, composable apps.</p>
                 <div class="lead download-links">
-                    <a class="download-button download-start" href="https://github.com/darvelo/ether">Download Ether</a>
-                    <div class="download-choice">
-                        <a class="download-button download-btn-amd" href="https://github.com/darvelo/ether">AMD</a>
-                        <a class="download-button download-btn-cjs" href="https://github.com/darvelo/ether">CommonJS</a>
-                        <a class="download-button download-btn-gbl" href="https://github.com/darvelo/ether">Global</a>
+                    <a class="download-btn download-btn-start" href="https://github.com/darvelo/ether">Download Ether</a>
+                    <div class="download-choices">
+                        <a class="download-btn download-btn-option" href="https://github.com/darvelo/ether">ES6</a>
+                        <a class="download-btn download-btn-option" href="https://github.com/darvelo/ether">AMD</a>
+                        <a class="download-btn download-btn-option" href="https://github.com/darvelo/ether">CommonJS</a>
+                        <a class="download-btn download-btn-option" href="https://github.com/darvelo/ether">Global</a>
                     </div>
                 </div>
             </section>

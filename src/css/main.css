@@ -22,8 +22,6 @@
    --navbar-height: 5rem;
    --main-color: #ff3f00;
    --secondary-color: #ffca5e;
-   --main-color: #006dff;
-   --secondary-color: hsl(250, 80%, 30%);
 }
 
 body {
@@ -53,6 +51,7 @@ body {
    display: flex;
    align-items: center;
    position: fixed;
+   z-index: 1;
    top: 0;
    right: 0;
    left: 0;
@@ -155,19 +154,22 @@ body {
    text-shadow: 0 1px 0 gray(0,.1);
 }
 
-.download-button {
+.download-btn {
    display: inline-block;
    padding: 20px 40px;
    border: 1px solid white;
+   background-color: transparent;
    color: white;
    text-decoration: none;
    font-size: 1.6rem;
    border-radius: 5px;
    box-shadow: 0 7px 10px gray(0,.2);
-   transition: all 0.2s linear;
+   transition-property: visibility, opacity, background-color, color, border, text-shadow, box-shadow;
+   transition-duration: 0.5s, 0.2s, 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
+   transition-timing-function: ease-in, ease-in, linear, linear, linear, linear, linear;
 
    &:hover {
-      background: white;
+      background-color: white;
       color: var(--main-color);
       border: 1px solid var(--main-color);
       text-shadow: 0 -1px 1px var(--secondary-color);
@@ -175,23 +177,38 @@ body {
    }
 }
 
-.download-choice {
-   display: none;
-   opacity: 0;
-   transition: opacity 1s ease-out;
+.download-links {
+   position: relative;
 
-   & a { margin-right: 5px; }
-   & a:last-child { margin-right: 0; }
-}
-
-.download-links.active {
-   & .download-start {
-      animation: fade-out .2s ease-out forwards;
+   & .download-btn-option {
+      margin-right: 5px;
+      &:last-child { margin-right: 0; }
    }
 
-   & .download-choice {
-      display: block;
+   & .download-btn-start {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+   }
+
+   & .download-btn-start {
+      visibility: visible;
       opacity: 1;
+   }
+   & .download-btn-option {
+      visibility: hidden;
+      opacity: 0;
+   }
+
+   &.active {
+      & .download-btn-start {
+         visibility: hidden;
+         opacity: 0;
+      }
+      & .download-btn-option {
+         visibility: visible;
+         opacity: 1;
+      }
    }
 }
 

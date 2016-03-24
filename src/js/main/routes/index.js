@@ -1,5 +1,6 @@
 import { Route } from 'ether';
 import template from '../templates/index';
+import DownloadView from '../views/download-btns';
 
 class IndexRoute extends Route {
     expectedAddresses() {
@@ -13,7 +14,10 @@ class IndexRoute extends Route {
     }
 
     init() {
-        this.outlets.index.innerHTML = template();
+        let outlet = this.outlets.index;
+        outlet.innerHTML = template();
+        let downloadArea = outlet.querySelector('.download-links');
+        this.downloadView = new DownloadView(downloadArea);
     }
 
     render() {
