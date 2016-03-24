@@ -126,13 +126,20 @@ body {
 }
 
 .main-footer {
-   margin: 2rem 0;
+   /* margin: 2rem 0 0; */
+   padding: 2rem 0;
+   background: #2a2730;
+   color: #99979c;
+
+   & a {
+      color: white;
+      text-decoration: none;
+   }
 }
 
-.main-footer .copyright {
-   padding: 2rem 0;
-   border-top: 1px solid #DDD;
-   text-align: right;
+.main-footer p {
+   margin: 0;
+   padding-bottom: 5px;
 }
 
 /*********
@@ -156,7 +163,7 @@ body {
    text-shadow: 0 1px 0 gray(0,.1);
 }
 
-.download-btn {
+.btn {
    display: inline-block;
    padding: 20px 40px;
    border: 1px solid white;
@@ -169,14 +176,15 @@ body {
    transition-property: visibility, opacity, background-color, color, border, text-shadow, box-shadow;
    transition-duration: 0.5s, 0.2s, 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
    transition-timing-function: ease-in, ease-in, linear, linear, linear, linear, linear;
+}
 
-   &:hover {
-      background-color: white;
-      color: var(--main-color);
-      border: 1px solid var(--main-color);
-      text-shadow: 0 -1px 1px var(--secondary-color);
-      box-shadow: 0 3px 5px gray(0,.4);
-   }
+.btn-inverted,
+.btn:hover {
+   background-color: white;
+   color: var(--main-color);
+   border: 1px solid var(--main-color);
+   text-shadow: 0 -1px 1px var(--secondary-color);
+   box-shadow: 0 3px 5px gray(0,.4);
 }
 
 .download-links {
@@ -267,6 +275,22 @@ body {
       margin-top: 0;
       color: #444;
       font-size: 1.4rem;
+   }
+}
+
+.github-cta {
+   margin-top: 1.8rem;
+   text-align: center;
+
+   & p {
+      margin-bottom: 0.8rem;
+      color: #555;
+      font-size: 1.7rem;
+   }
+
+   & .github-btn {
+      padding: 0.7rem 1.5rem;
+      box-shadow: none;
    }
 }
 

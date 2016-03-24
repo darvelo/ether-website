@@ -4,12 +4,12 @@ export default function indexTemplate() {
             <section class="container">
                 <p class="lead tagline">Ether is a minimalistic framework<br>for creating modular, composable apps.</p>
                 <div class="lead download-links">
-                    <a class="download-btn download-btn-start" href="https://github.com/darvelo/ether">Download Ether</a>
+                    <a class="btn download-btn-start" href="https://github.com/darvelo/ether">Download Ether</a>
                     <div class="download-choices">
-                        <a class="download-btn download-btn-option" href="https://github.com/darvelo/ether">ES6</a>
-                        <a class="download-btn download-btn-option" href="https://github.com/darvelo/ether">AMD</a>
-                        <a class="download-btn download-btn-option" href="https://github.com/darvelo/ether">CommonJS</a>
-                        <a class="download-btn download-btn-option" href="https://github.com/darvelo/ether">Global</a>
+                        <a class="btn download-btn-option" href="https://github.com/darvelo/ether">ES6</a>
+                        <a class="btn download-btn-option" href="https://github.com/darvelo/ether">AMD</a>
+                        <a class="btn download-btn-option" href="https://github.com/darvelo/ether">CommonJS</a>
+                        <a class="btn download-btn-option" href="https://github.com/darvelo/ether">Global</a>
                     </div>
                 </div>
             </section>
@@ -77,6 +77,10 @@ export default function indexTemplate() {
                             <p>Made a mistake setting up your app? No problem. Ether will let you know where the issue is right when the app starts. Use debug mode for even more insight.</p>
                         </div>
                     </div>
+                </div>
+                <div class="github-cta">
+                    <p>Ether is open source software.</p>
+                    <a class="btn btn-inverted github-btn" href="https://github.com/darvelo/ether">View on GitHub</a>
                 </div>
             </section>
         </section>
