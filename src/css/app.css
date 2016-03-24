@@ -1,5 +1,6 @@
 .twitter-app {
     position: relative;
+    margin: 0 auto;
     width: 700px;
     height: 200px;
     background: rgb(228, 201, 255);

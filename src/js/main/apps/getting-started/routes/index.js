@@ -1,4 +1,5 @@
 import { Route } from 'ether';
+import template from '../templates/index';
 
 class GettingStartedIndexRoute extends Route {
     expectedAddresses() {
@@ -10,14 +11,13 @@ class GettingStartedIndexRoute extends Route {
     expectedOutlets() {
         return ['gs'];
     }
+
+    init() {
+        let outlet = this.outlets.gs;
+        outlet.innerHTML = template();
+    }
+
     render() {
-        let h1 = document.createElement('h1');
-        h1.textContent = 'Getting Started Index';
-        this.outlets.gs.append(h1);
-        let link = document.createElement('a');
-        link.href = this.linkTo(':.index');
-        link.textContent = 'To Root';
-        this.outlets.gs.append(link);
         this.sendTo(':.navbar', 'setActiveLink', this.expectedAddresses());
     }
 }

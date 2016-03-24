@@ -7,7 +7,7 @@
     </head>
     <body>
         <div id="twitter"></div>
-        <script src="/public/scripts/vendor/ether.global.js"></script>
+        <script src="/public/vendor/scripts/ether.global.js"></script>
         <script src="/public/scripts/app1.js"></script>
         <script>
             function changeURLInfo(event, promise) {
@@ -16,9 +16,10 @@
                     self.sendTo('url', self.fullUrl());
                 });
             }
+            var iframe = window.ownerDocument !== document;
             var myApp = new App1({
                 windowLoad: changeURLInfo,
-                history: changeURLInfo,
+                history: iframe ? false : changeURLInfo,
                 interceptLinks: function all(event, promise) {
                     changeURLInfo.call(this, event, promise);
                 },
