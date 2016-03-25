@@ -1,5 +1,6 @@
 import { App, makeOutlet } from 'ether';
 import IndexRoute from './routes/index';
+import TOCRoute from './routes/toc';
 
         // <script>
         //     var app2 = document.createElement('script');
@@ -22,7 +23,6 @@ import IndexRoute from './routes/index';
         //         },
         //     }).start();
         // </script>
-        // <iframe id="app1-iframe" src="/app1/"></iframe>
 class GettingStartedApp extends App {
     expectedAddresses() {
         return [':gs'];
@@ -33,11 +33,34 @@ class GettingStartedApp extends App {
     expectedOutlets() {
         return ['gs'];
     }
+    createOutlets(outlets) {
+        let content = outlets.content = makeOutlet({
+            tagName: 'section',
+            classNames: ['getting-started-content'],
+            mutable: true,
+        });
+        let toc = outlets.toc = makeOutlet({
+            tagName: 'aside',
+            classNames: ['getting-started-toc'],
+            mutable: true,
+        });
+        outlets.gs.append(content.get());
+        outlets.gs.append(toc.get());
+        return outlets;
+    }
     mount() {
         return {
             '': IndexRoute
                     .addresses(':gs.index')
-                    .outlets('gs'),
+                    .outlets('content'),
+        };
+    }
+    mountConditionals() {
+        return {
+            '+:gs.index':
+                TOCRoute
+                    .addresses(':gs.toc')
+                    .outlets('toc'),
         };
     }
 }

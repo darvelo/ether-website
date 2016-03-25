@@ -2,10 +2,10 @@ var rollup = require('rollup');
 var babel = require('rollup-plugin-babel');
 
 var dest = 'public/scripts/';
-var banner = '/* Ether Website App */';
+var banner = '/* Ether Website App Utils */';
 
 rollup.rollup({
-    entry: 'src/js/main/index.js',
+    entry: 'src/js/utils/index.js',
     banner: banner,
     plugins: [
         babel(),
@@ -14,13 +14,9 @@ rollup.rollup({
     return Promise.all([
         bundle.write({
             format: 'iife',
-            globals: {
-                ether: 'Ether',
-                utils: 'utils',
-            },
             exports: 'auto',
-            moduleName: 'MainApp',
-            dest: dest + 'main.js',
+            moduleName: 'utils',
+            dest: dest + 'utils.js',
         }),
     ]);
 }).catch(function (err) {
