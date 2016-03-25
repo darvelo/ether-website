@@ -8,7 +8,7 @@
     <body>
         <div id="twitter"></div>
         <script src="/public/vendor/scripts/ether.global.js"></script>
-        <script src="/public/scripts/app1.js"></script>
+        <script src="/public/scripts/app.js"></script>
         <script>
             function isInsideIframe() {
                 try {
@@ -24,13 +24,13 @@
                 });
             }
             var iframe = isInsideIframe();
-            var myApp = new App1({
+            var myApp = new TwitterApp({
                 windowLoad: changeURLInfo,
                 history: iframe ? false : changeURLInfo,
                 interceptLinks: function all(event, promise) {
                     changeURLInfo.call(this, event, promise);
                 },
-                basePath: '/app1',
+                basePath: '/app',
                 outlets: {
                     twitter: new Ether.MutableOutlet(document.getElementById('twitter')),
                 },

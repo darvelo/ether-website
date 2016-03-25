@@ -5,7 +5,7 @@ var dest = 'public/scripts/';
 var banner = '/* My Twitter App */';
 
 rollup.rollup({
-    entry: 'src/js/app1/root-app.js',
+    entry: 'src/js/app/root-app.js',
     banner: banner,
     plugins: [
         babel(),
@@ -18,8 +18,8 @@ rollup.rollup({
                 ether: 'Ether',
             },
             exports: 'auto',
-            moduleName: 'App1',
-            dest: dest + 'app1.js',
+            moduleName: 'TwitterApp',
+            dest: dest + 'app.js',
         }),
     ]);
 }).catch(function (err) {

@@ -95,9 +95,7 @@ class WebsocketServer(ThreadingMixIn, TCPServer, API):
 
 	def __init__(self, port, host='127.0.0.1'):
 		self.port=port
-		print('port is:', port)
 		TCPServer.__init__(self, (host, port), WebSocketHandler)
-		print('yaay')
 
 	def _message_received_(self, handler, msg):
 		self.message_received(self.handler_to_client(handler), self, msg)
