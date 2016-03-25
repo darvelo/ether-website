@@ -10,13 +10,20 @@
         <script src="/public/vendor/scripts/ether.global.js"></script>
         <script src="/public/scripts/app1.js"></script>
         <script>
+            function isInsideIframe() {
+                try {
+                    return window.self !== window.top;
+                } catch (e) {
+                    return true;
+                }
+            }
             function changeURLInfo(event, promise) {
                 var self = this;
                 promise.then(function() {
                     self.sendTo('url', self.fullUrl());
                 });
             }
-            var iframe = window.ownerDocument !== document;
+            var iframe = isInsideIframe();
             var myApp = new App1({
                 windowLoad: changeURLInfo,
                 history: iframe ? false : changeURLInfo,
