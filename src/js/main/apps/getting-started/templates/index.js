@@ -12,8 +12,8 @@ export default function gettingStartedIndexTemplate() {
 <div class="container">
     <section class="tutorial tutorial-intro">
         <h1>Getting Started</h1>
-        <p>Welcome to development with Ether! This page will ease you into learning the three major components in Ether: <code>RootApp</code>, <code>App</code>, and <code>Route</code>, and how they work together. We'll build a small app that shows random tweets and learn the different ways we can integrate it into a webpage and even other Ether apps. <a href="/app1/" target="_blank">Visit the page</a> yourself and notice how the app's pathname bar matches the browser history. The <a href="https://github.com/darvelo/ether-website/src/js/app1">source code</a> can be found on GitHub. Here's the whole app embedded in an <code>iframe</code>:</p>
-        <iframe id="app1-iframe" src="/app/"></iframe>
+        <p>Welcome to development with Ether! This page will ease you into learning the three major components in Ether: <code>RootApp</code>, <code>App</code>, and <code>Route</code>, and how they work together. We'll build a small app that shows random tweets and learn the different ways we can integrate it into a webpage and even other Ether apps. <a href="/app/" target="_blank">Visit the page</a> yourself and notice how the app's pathname bar matches the browser history. The <a href="https://github.com/darvelo/ether-website/src/js/app">source code</a> can be found on GitHub. Here's the whole app embedded in an <code>iframe</code>:</p>
+        <iframe id="app-iframe" src="/app/"></iframe>
         <p></p>
     </section>
     <section class="tutorial">

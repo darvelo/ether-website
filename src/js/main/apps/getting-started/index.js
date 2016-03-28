@@ -1,28 +1,9 @@
 import { App, makeOutlet } from 'ether';
 import IndexRoute from './routes/index';
 import TOCRoute from './routes/toc';
+import template from './templates/index';
+import highlightCode from './utils/highlight-code';
 
-        // <script>
-        //     var app2 = document.createElement('script');
-        //     app2.src="/scripts/app2.js"
-        //     function changeURLInfo(event, promise) {
-        //         var self = this;
-        //         promise.then(function() {
-        //             self.sendTo('url', self.fullUrl());
-        //         });
-        //     }
-        //     var myApp = new App1({
-        //         windowLoad: changeURLInfo,
-        //         history: changeURLInfo,
-        //         interceptLinks: function all(event, promise) {
-        //             changeURLInfo.call(this, event, promise);
-        //         },
-        //         basePath: '/app1',
-        //         outlets: {
-        //             twitter: new Ether.MutableOutlet(document.getElementById('twitter')),
-        //         },
-        //     }).start();
-        // </script>
 class GettingStartedApp extends App {
     expectedAddresses() {
         return [':gs'];
@@ -34,25 +15,17 @@ class GettingStartedApp extends App {
         return ['gs'];
     }
     createOutlets(outlets) {
-        let content = outlets.content = makeOutlet({
-            tagName: 'section',
-            classNames: ['getting-started-content'],
-            mutable: true,
-        });
         let toc = outlets.toc = makeOutlet({
             tagName: 'aside',
             classNames: ['getting-started-toc'],
             mutable: true,
         });
-        outlets.gs.append(content.get());
         outlets.gs.append(toc.get());
         return outlets;
     }
     mount() {
         return {
-            '': IndexRoute
-                    .addresses(':gs.index')
-                    .outlets('content'),
+            '': IndexRoute.addresses(':gs.index'),
         };
     }
     mountConditionals() {
@@ -62,6 +35,22 @@ class GettingStartedApp extends App {
                     .addresses(':gs.toc')
                     .outlets('toc'),
         };
+    }
+
+    init() {
+        let outlet = this.outlets.gs;
+        outlet.innerHTML = template();
+        if (window.Worker) {
+            this.highlighted = highlightCode(outlet);
+        } else {
+            this.highlighted = null;
+        }
+        this.sendTo(':gs.toc', 'generateTOC');
+    }
+
+    render() {
+        this.sendTo(':.navbar', 'setActiveLink', this.expectedAddresses());
+        return this.highlighted;
     }
 }
 

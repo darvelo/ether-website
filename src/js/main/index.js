@@ -12,7 +12,8 @@ function navbarLinksData() {
         },
         {
             text: 'Getting Started',
-            address: ':gs.index',
+            address: ':gs',
+            dest: ':gs.index',
         },
     ];
 }

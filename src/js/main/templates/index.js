@@ -17,7 +17,7 @@ export default function indexTemplate() {
         <section class="features">
             <section class="container">
                 <h1>Features</h1>
-                <blockquote>Ether: An omnipresent, completely passive-medium for the propagation of magnetic waves. <span class="attribution">&mdash;Robert Metcalfe</span></blockquote>
+                <blockquote>Ether: An omnipresent, completely passive medium for the propagation of magnetic waves. <span class="attribution">&mdash;Robert Metcalfe</span></blockquote>
                 <div class="feature-list">
                     <div class="feature">
                         <div class="feature-icon">
