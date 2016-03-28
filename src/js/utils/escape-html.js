@@ -11,17 +11,29 @@ let escapeFn = function(c) {
     return character[c];
 };
 
+function trimLeft(str) {
+    return str.replace(/^[\s\uFEFF\xA0]+/, '');
+}
+
+function trimRight(str) {
+    return str.replace(/[\s\uFEFF\xA0]+$/, '');
+}
+
 export default function escapeHTML(strings, ...interpolated) {
     var result = [];
-    let i;
-    for (i = 0; i < strings.length; ++i) {
-        result.push(strings[i].replace(escapeRegex, escapeFn));
-        if (interpolated[i]) {
+    for (let i = 0, len = strings.length, len2 = interpolated.length; i < len; ++i) {
+        let str = strings[i];
+        if (len === 1) {
+            str = str.trim();
+        } else if (i === 0) {
+            str = trimLeft(str);
+        } else if (i === len-1) {
+            str = trimRight(str);
+        }
+        result.push(str.replace(escapeRegex, escapeFn));
+        if (i < len2) {
             result.push(interpolated[i].replace(escapeRegex, escapeFn));
         }
-    }
-    if (i === 0 && interpolated[i]) {
-        result.push(interpolated[i]);
     }
     return result.join('');
 }
