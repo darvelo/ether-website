@@ -17,7 +17,7 @@
                     return true;
                 }
             }
-            function changeURLInfo(event, promise) {
+            function updatePathbar(event, promise) {
                 var self = this;
                 promise.then(function() {
                     self.sendTo('url', self.fullUrl());
@@ -25,10 +25,10 @@
             }
             var iframe = isInsideIframe();
             var myApp = new TwitterApp({
-                windowLoad: changeURLInfo,
-                history: iframe ? false : changeURLInfo,
+                windowLoad: updatePathbar,
+                history: iframe ? false : updatePathbar,
                 interceptLinks: function all(event, promise) {
-                    changeURLInfo.call(this, event, promise);
+                    updatePathbar.call(this, event, promise);
                 },
                 basePath: '/app',
                 outlets: {

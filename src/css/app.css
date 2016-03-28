@@ -87,6 +87,7 @@
     display: flex;
     margin: 0;
     height: 30px;
+    border-radius: 15px;
 
     & span {
         flex: auto;
@@ -99,11 +100,15 @@
         background: color(white blackness(+10%));
         font-style: italic;
         padding: 5px 10px;
+        /* fix chrome rendering bug */
+        border-top-left-radius: 15px;
     }
 
     & .value {
         background: white;
         flex: calc(100%);
+        /* fix chrome rendering bug */
+        border-top-right-radius: 15px;
     }
 }
 
