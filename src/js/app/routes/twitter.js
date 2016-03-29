@@ -1,7 +1,7 @@
 import { Route } from 'ether';
-import TweetView from './tweet-view';
-import navButton from './templates/nav-button';
-import onAnimationEnd from './utils/on-animationend';
+import TweetView from '../views/tweet';
+import navButton from '../templates/nav-button';
+import onAnimationEnd from '../utils/on-animationend';
 
 class TwitterRoute extends Route {
     expectedAddresses() {

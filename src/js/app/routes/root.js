@@ -1,6 +1,6 @@
 import { Route } from 'ether';
-import navButton from './templates/nav-button';
-import onAnimationEnd from './utils/on-animationend';
+import navButton from '../templates/nav-button';
+import onAnimationEnd from '../utils/on-animationend';
 
 class RootRoute extends Route {
     expectedAddresses() {

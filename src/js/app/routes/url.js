@@ -1,4 +1,5 @@
 import { Route } from 'ether';
+
 class URLRoute extends Route {
     expectedAddresses() {
         return ['url'];
@@ -17,14 +18,14 @@ class URLRoute extends Route {
     init() {
         let p = document.createElement('p');
         p.className = 'pathname';
-        p.innerHTML = `<span class="prefix">pathname</span><span class="value"></span>`;
+        p.innerHTML = '<span class="prefix">pathname</span><span class="value"></span>';
         this.outlets.url.append(p);
         this.text = p.querySelector('.value');
     }
 
     // addresses handlers
     receive(url) {
-        this.text.textContent = `${url}`;
+        this.text.textContent = url;
     }
 }
 

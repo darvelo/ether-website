@@ -1,7 +1,7 @@
 import { RootApp, makeOutlet } from 'ether';
-import RootRoute from './root-route';
-import TwitterRoute from './twitter-route';
-import URLRoute from './url-route';
+import RootRoute from './routes/root';
+import TwitterRoute from './routes/twitter';
+import URLRoute from './routes/url';
 import tweets from './data/tweets';
 
 let twitterAddress = 'twitter';

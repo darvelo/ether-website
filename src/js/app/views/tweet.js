@@ -1,5 +1,5 @@
 import { View } from 'ether';
-import ajax from './utils/ajax';
+import ajax from '../utils/ajax';
 
 class TweetView extends View {
     init() {
