@@ -18,7 +18,7 @@ rollup.rollup({
                 ether: 'Ether',
             },
             exports: 'auto',
-            moduleName: 'TwitterApp',
+            moduleName: 'TwitterRootApp',
             dest: dest + 'app.js',
         }),
     ]);

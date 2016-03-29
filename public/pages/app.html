@@ -24,7 +24,7 @@
                 });
             }
             var iframe = isInsideIframe();
-            var myApp = new TwitterApp({
+            var myApp = new TwitterRootApp({
                 windowLoad: updatePathbar,
                 history: iframe ? false : updatePathbar,
                 interceptLinks: function all(event, promise) {
