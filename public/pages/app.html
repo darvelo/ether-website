@@ -20,7 +20,7 @@
             function updatePathbar(event, promise) {
                 var self = this;
                 promise.then(function() {
-                    self.sendTo('url', self.fullUrl());
+                    self.sendTo('url', self.fullUrl);
                 });
             }
             var iframe = isInsideIframe();

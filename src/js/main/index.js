@@ -24,7 +24,7 @@ class EtherWebsite extends RootApp {
     }
     createOutlets(outlets) {
         outlets.main = makeOutlet({
-            el: outlets.main.get(),
+            el: outlets.main.el,
             classNames: ['main-app'],
             append: [
                 outlets.navbar = makeOutlet({

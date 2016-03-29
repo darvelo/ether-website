@@ -32,9 +32,9 @@
             function all(event, promise) {
                 var self = this;
                 promise.then(function() {
-                    console.log('good url', self.fullUrl());
+                    console.log('good url', self.fullUrl);
                 }, function(err) {
-                    console.log('bad url', self.fullUrl(), err);
+                    console.log('bad url', self.fullUrl, err);
                 });
             }
             var mainApp = new MainApp({

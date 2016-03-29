@@ -49,7 +49,7 @@ class TwitterRoute extends Route {
     }
     deactivate() {
         return new Promise(resolve => {
-            onAnimationEnd(this.outlets.tweet.get(), resolve);
+            onAnimationEnd(this.outlets.tweet.el, resolve);
         });
     }
     render(params, queryParams, diffs) { }

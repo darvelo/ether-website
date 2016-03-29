@@ -70,7 +70,7 @@ class RootRoute extends Route {
     }
     deactivate() {
         return new Promise(resolve => {
-            onAnimationEnd(this.outlets.root.get(), () => {
+            onAnimationEnd(this.outlets.root.el, () => {
                 this.outlets.root.empty();
                 resolve();
             });

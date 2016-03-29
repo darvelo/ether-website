@@ -45,7 +45,7 @@ class TwitterRootApp extends RootApp {
     }
     createOutlets(outlets) {
         outlets.twitter = makeOutlet({
-            el: outlets.twitter.get(),
+            el: outlets.twitter.el,
             classNames: ['twitter-app'],
             append: [
                 outlets.url = makeOutlet({

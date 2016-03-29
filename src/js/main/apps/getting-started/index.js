@@ -20,7 +20,7 @@ class GettingStartedApp extends App {
             classNames: ['getting-started-toc'],
             mutable: true,
         });
-        outlets.gs.append(toc.get());
+        outlets.gs.append(toc.el);
         return outlets;
     }
     mount() {
