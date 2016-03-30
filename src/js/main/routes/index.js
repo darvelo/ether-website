@@ -23,8 +23,15 @@ class IndexRoute extends Route {
     prerender() {
         this.downloadView.reset();
     }
-
+    deactivate() {
+        if ('scrollRestoration' in window.history) {
+            this.scrollTop = window.scrollY;
+        } else {
+            this.scrollTop = 0;
+        }
+    }
     render() {
+        window.scrollTo(0, this.scrollTop);
         this.sendTo(':.navbar', 'setActiveLink', this.expectedAddresses());
     }
 }

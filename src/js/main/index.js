@@ -62,6 +62,11 @@ class EtherWebsite extends RootApp {
         });
         return outlets;
     }
+    init() {
+        if ('scrollRestoration' in window.history) {
+            window.history.scrollRestoration = 'manual';
+        }
+    }
     mount() {
         return {
             '': IndexRoute

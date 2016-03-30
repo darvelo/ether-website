@@ -48,8 +48,17 @@ class GettingStartedApp extends App {
         this.sendTo(':gs.toc', 'generateTOC');
     }
 
+    deactivate() {
+        if ('scrollRestoration' in window.history) {
+            this.scrollTop = window.scrollY;
+        } else {
+            this.scrollTop = 0;
+        }
+    }
+
     render() {
         this.sendTo(':.navbar', 'setActiveLink', this.expectedAddresses());
+        window.scrollTo(0, this.scrollTop);
         return this.highlighted;
     }
 }
