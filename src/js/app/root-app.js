@@ -35,7 +35,7 @@ function addTweetTransformer(setup) {
 
 function addButtonData() {
     return {
-        linkTo: {address: 'root', text: 'Back'},
+        linkData: {address: 'root', text: 'Back'},
     };
 }
 

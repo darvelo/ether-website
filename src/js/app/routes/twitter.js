@@ -17,15 +17,15 @@ class TwitterRoute extends Route {
         return ['twitter_username', 'tweet_id'];
     }
     expectedSetup(setupVal) {
-        if (typeof setupVal === 'object' && typeof setupVal.linkTo === 'object') {
-            if (typeof setupVal.linkTo.address !== 'string') {
-                throw new Error('TwitterRoute setup: linkTo.address not a string');
+        if (typeof setupVal === 'object' && typeof setupVal.linkData === 'object') {
+            if (typeof setupVal.linkData.address !== 'string') {
+                throw new Error('TwitterRoute setup: linkData.address not a string');
             }
-            if (typeof setupVal.linkTo.text !== 'string') {
-                throw new Error('TwitterRoute setup: linkTo.text not a string');
+            if (typeof setupVal.linkData.text !== 'string') {
+                throw new Error('TwitterRoute setup: linkData.text not a string');
             }
-            if (setupVal.linkTo.params && typeof setupVal.linkTo.params !== 'object') {
-                throw new Error('TwitterRoute setup: linkTo.params not an object');
+            if (setupVal.linkData.params && typeof setupVal.linkData.params !== 'object') {
+                throw new Error('TwitterRoute setup: linkData.params not an object');
             }
         }
     }
@@ -36,8 +36,8 @@ class TwitterRoute extends Route {
         this.outlets.tweet.append(this.view.el);
 
         // create nav button based on setup
-        if (typeof setupVal === 'object' && setupVal.linkTo) {
-            let { address, params, text } = setupVal.linkTo;
+        if (typeof setupVal === 'object' && setupVal.linkData) {
+            let { address, params, text } = setupVal.linkData;
             let href = this.linkTo(address, params);
             this.outlets.tweet.append(navButton(href, text));
         }
