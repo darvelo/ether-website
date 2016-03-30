@@ -316,12 +316,28 @@ body {
    &.highlighted pre code {
       opacity: 1;
    }
+
+   & aside {
+      display: inline;
+      float: right;
+      margin-left: 25px;
+      padding: 10px 20px;
+      width: 30%;
+      background: gray(240);
+      border-radius: 8px;
+   }
 }
 
 #app-iframe {
    border: none;
    width: 100%;
    height: 220px;
+}
+
+/* guides */
+
+.guides nav li.active {
+   background: orange;
 }
 
 /* docs */

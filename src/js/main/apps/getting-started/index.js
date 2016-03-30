@@ -43,8 +43,13 @@ class GettingStartedApp extends ScrollApp {
     }
 
     init() {
+        let hrefs = {
+            'reusingclasses': this.linkTo(':guides.reusingclasses'),
+            'sharedprops': this.linkTo(':docs.shared'),
+            'rootAppDocs': this.linkTo(':docs.rootapp'),
+        };
         let outlet = this.outlets.gs;
-        outlet.innerHTML = template();
+        outlet.innerHTML = template({hrefs});
         if (window.Worker) {
             this.highlighted = highlightCode(outlet).then(() => {
                 this.addHighlightedClass();

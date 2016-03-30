@@ -5,7 +5,7 @@ import twitterURLRouteJS from './index/twitter-url-route-js';
 import twitterTwitterRouteJS from './index/twitter-twitter-route-js';
 import twitterRootRouteJS from './index/twitter-root-route-js';
 
-export default function gettingStartedIndexTemplate() {
+export default function gettingStartedIndexTemplate(ctx) {
     return `
 <div class="container">
     <section class="tutorial tutorial-intro">
@@ -19,34 +19,9 @@ export default function gettingStartedIndexTemplate() {
         <h2>Instantiating an App</h2>
         <p>Let's start the process at the end. Constructing our twitter app is very simple. Here are the relevant bits of HTML:</p>
         <pre><code class="hljs html">${appHTML()}</code></pre>
-        <p>In addition to <code>TwitterRootApp.create(...)</code>, we could have used <code>new TwitterRootApp(...)</code> with the same options. Here's a description of each option:</p>
-        <dl>
-            <dt><code>windowLoad</code></dt>
-            <dd>If <code>true</code>, the app performs routing with the URL in the address bar when the <code>load</code> event on the <code>window</code> fires. If a <code>function</code>, performs routing <em>and</em> the function is called when the event fires.</dd>
-            <dt><code>history</code></dt>
-            <dd>If <code>true</code>, the app performs routing with the URL in the address bar when the <code>popstate</code> event on the <code>window</code> fires. If a <code>function</code>, performs routing <em>and</em> the function is called when the event fires. In either case, whenever the app navigates successfully it will perform a HTML5 History <code>pushState</code>.</dd>
-            <dd></dd>
-            <dt><code>interceptLinks</code></dt>
-            <dd>Adds click event handlers to links and performs routing using the <code>href</code> attribute. There are two valid values: <code>'all'</code> and <code>'outlets'</code>. If <code>'all'</code>, the app adds an event handler to the <code>body</code> tag. If <code>'outlets'</code>, the app adds event handlers to all outlets you define throughout your application. Any link outside of these outlets is not intercepted. Instead of a string, you can provide a function that gets called when a link is clicked, but the function <strong>must</strong> have the name <code>all</code> or <code>outlets</code> so that Ether knows which links you want to intercept.</dd>
-            <dd></dd>
-            <dt><code>basePath</code></dt>
-            <dd>Defines the url prefix your app is mounted on. Defaults to <code>/</code>. Only URLs that contain this prefix will be handled by the above event handlers, and if you perform manual navigation and <code>history</code> is enabled, the <code>basePath</code> will be prepended to the navigation URL on <code>pushState</code>.</dd>
-            <dt><code>outlets</code></dt>
-            <dd>A dictionary of named outlets, DOM elements that are wrapped in instances of either <code>Ether.Outlet</code> or <code>Ether.MutableOutlet</code>. You use outlets to control your application's structure.</dd>
-        </dl>
+        <p>In addition to <code>TwitterRootApp.create(...)</code>, we could have used <code>new TwitterRootApp(...)</code> with the same options. Check out the docs for <a href="${ctx.hrefs.rootAppDocs}">a description of each option.</a></p>
         <p><strong>Note:</strong> None of the event handlers described above are attached until you call <code>start()</code> on your app instance.</p>
         <p>Since all the event handlers call <code>updatePathbar</code>, we know that the function is essentially called for all navigation events. The function signature for each handler is the same: it gets the relevant DOM event, and a promise that resolves if navigation succeeded or rejects if there was no route matching the URL destination (404). <code>this</code> is the TwitterRootApp instance and <code>sendTo()</code> is the way we communicate to different parts of our application using addresses.</p>
-        <p>RootApp has a few extra useful features...</p>
-        <dl>
-            <dt><code>navigate()</code></dt>
-            <dd>Takes two arguments: <code>path</code> and <code>opts</code>. The first is a URL path you want to route to within the app (not including the basePath), such as <code>/my/inner/path/12345</code>. The second is an optional object with one of two boolean properties: <code>pushState</code> or <code>replaceState</code>. The default is <code>pushState: true</code> but it has no effect if you're not using HTML6 History.</dd>
-            <dt><code>canNavigateTo()</code></dt>
-            <dd>Takes one argument: <code>path</code>, and returns true if passing that path into <code>navigate</code> would succeed, or false otherwise.</dd>
-            <dt><code>fullUrl</code></dt>
-            <dd>A property on the RootApp instance of the last path passed into <code>navigate()</code> that resulted in a successful navigation.</dd>
-            <dt><code>start()</code></dt>
-            <dd>Attaches all event handlers you configured in <code>.create()</code></dd>
-        </dl>
     </section>
 
     <section class="tutorial">
@@ -57,7 +32,7 @@ export default function gettingStartedIndexTemplate() {
         <h3>createOutlets()</h3>
         <p>Outlets provide a strategy for managing the DOM. As mentioned before, outlets are just wrappers for DOM elements. The idea is that an outlet is owned solely by a single App or Route and survives inside the DOM for the life of the application, but provides a place to add or remove child elements within it. Ether's <code>Outlet</code> class restricts access to a DOM element and some of its methods. The DOM element of an outlet can contain the DOM element of another outlet, so it's important to prevent certain actions such as clearing an outlet's HTML. If you want more control, you can use Ether's <code>MutableOutlet</code> class that gives direct access to the element through its <code>el</code> property. In this example we're using a helper function called <code>makeOutlet</code> to create outlets with an existing element (or created element with a tagname) and add CSS classes without invoking these constructors directly. Here we also say whether we want a MutableOutlet with the <code>mutable</code> option. The <code>outlets</code> object received here is what was passed into <code>TwitterRootApp.create()</code>. Whatever object is returned will be the named outlets owned by the app.</p>
         <h3>mount()</h3>
-        <p>Here we declare the routes that exist on the root (relative to basePath) and what class will handle them. What's interesting is we not only can mount a Route at a location, but another App! This flexibility will provide us the encapsulation we need to repurpose an entire section of our app for a completely different project, which we'll see soon. Ether will create a unique instance of each of the classes for each URL path, which allows us to reuse classes for other paths as well.</p>
+        <p>Here we declare the routes that exist on the root (relative to basePath) and what class will handle them. What's interesting is we not only can mount a Route at a location, but another App! This flexibility will provide us the encapsulation we need to repurpose pieces of the app for other projects in our <a href="${ctx.hrefs.reusingclasses}">guide on reusing Ether classes</a>. Ether will create a unique instance of each of the classes for each URL path, which allows us to reuse classes for other paths as well.</p>
         <pre><code class="hljs js">${rootRouteMountJS()}</code></pre>
         <p>An instance of the <code>RootRoute</code> class will be mounted on the root URL path (the leading slash in a path string is optional) and registered as having the address <code>root</code>. It'll also receive the <code>root</code> outlet created in the <code>createOutlets()</code> method and the TwitterRootApp will lose ownership of that outlet, meaning it'll no longer be available as <code>this.outlets.root</code> in TwitterRootApp methods but will be in RootRoute methods. Any number of addresses or outlets can be given by adding to the number of parameters. The <code>.setup()</code> method takes any number of functions, which will be called in order when the instance is created. The return value of the first function will be passed in as the first argument to the second function and so on. The return value of the last function will be passed into the RootRoute's <code>init()</code> method.</p>
         <pre><code class="hljs js">${twitterRouteMountJS()}</code></pre>
@@ -79,28 +54,41 @@ export default function gettingStartedIndexTemplate() {
     </section>
 
     <section class="tutorial">
-        <h2>App</h2>
-        <p>A RootApp is just a special instance of <code>App</code> with a few features added, so there's nothing left to learn here! You can mount Apps and Routes just as you can on RootApp, creating rich, structured URLs.</p>
+        <h2 id="app">App</h2>
+        <p>A RootApp is just a special instance of <code>App</code> with a few features added, so there's nothing left to learn here! You can mount Apps and Routes just as you can on a RootApp to create rich, structured URLs.</p>
     </section>
 
     <section class="tutorial">
         <h2>Route</h2>
-        <p>blah blah</p>
+        <p>The App's <code>mount()</code> method allows other Apps to be mounted on a portion of a URL path, but for navigation to succeed a complete URL must terminate at a Route. Apps provide a way to split up the work your app does, but Routes actually handle the navigation requests. In our twitter app we created three routes.</p>
         <h3>URLRoute</h3>
+        <p>We want this Route subclass to display the current URL (the URLRoute name isn't special.. we could have used any name). Because it was mounted as a <code>*</code> conditional mount, it'll be rendered regardless of which of the other routes (mounted in <code>TwitterRootApp#mount()</code>) handles a URL request, which makes it useful as a kind of header or persistent widget.</p>
         <pre><code class="hljs js">${twitterURLRouteJS()}</code></pre>
+        <p>In the <code>init()</code> method we create <code>&lt;span class="value"&gt;</code> to hold the URL text and assign it to <code>this.text</code>. What's interesting is the <code>receive()</code> method, which takes a <code>url</code> argument and assigns it to the element's text content. How does this work?</p>
+
+        <aside>
+            <h4>A Word on API Similarities between Ether Classes</h4>
+            <p>Most methods and variables on <code>RootApp</code>, <code>App</code>, and <code>Route</code> overlap, which makes for quick learning of the Ether API surface. <a href="${ctx.hrefs.sharedprops}">Check out the docs to learn more</a>.</p>
+        </aside>
+
+        <h3>The expected*() Methods</h3>
+        <p>These represent a set of four similar methods:</p>
+        <p><code>expectedAddresses()</code> must match the addresses passed into the route when it was mounted with <code>.addresses()</code>. These are the addresses the class responds to when the <code>sendTo(address, data...)</code> method is called elsewhere in the Ether app.</p>
+        <p><code>expectedOutlets()</code> must match <code>.outlets()</code>, and also guarantees those named outlets will be available on <code>this.outlets</code>.</p>
+        <p><code>expectedSetup()</code> is an opportunity to check the value passed in with <code>.setup()</code> and throw an error if it isn't what the class needs to work properly, before it's passed to init().</p>
+        <p><code>expectedParams()</code> is a bit different&mdash;it allows you to return an array of parameter names that have been collected in the URL paths mounted up to this point. You can leave out any you don't need, and only the ones you list will be provided in the render functions (which we'll talk about later). Ether will throw a helpful error if you list parameter names that don't exist on that URL.</p>
+        <p><strong>Together, these methods act not only as protection against setup mistakes, but also as documentation.</strong> You'll know exactly which addresses an App or Route goes by and which outlets, URL parameters, and setup values are available inside its member functions.</p>
+        <h3>addressesHandlers</h3>
+        <p>If expectedAddresses() returns a list of addresses your class goes by, <code>addressesHandlers()</code> returns a list of functions that are called when their respective addresses are sent data from elsewhere in the application with the <code>sendTo(address, data...)</code> method. In our URLRoute code above, we see our URLRoute goes by the address <code>'url'</code> and the function that will be called on <code>sendTo('url', data...)</code> is <code>receive(data...)</code>. There's a reason to split the names and handler functions into two methods: to allow subclasses to use the same handlers after overriding expectedAddresses() and leaving addressesHandlers() untouched.</p>
+
+        <h3>TwitterRoute</h3>
         <p></p>
         <pre><code class="hljs js">${twitterTwitterRouteJS()}</code></pre>
+        <h3>RootRoute</h3>
         <p></p>
         <pre><code class="hljs js">${twitterRootRouteJS()}</code></pre>
     </section>
 
-    <aside>
-        <h2>A Word on API Similarities</h2>
-        <p>Most methods and variables on <code>RootApp</code>, <code>App</code>, and <code>Route</code> overlap, which makes for quick learning of the Ether API surface.</p>
-        <p>this.state this.outlets navigate() canNavigateTo() sendTo() linkTo() init() prerender/deactivate/render</p>
-        <h3>expectedOutlets()</h3>
-        <p>This method is actually one of a set of four similar methods: <code>expectedAddresses()</code>, <code>expectedOutlets()</code>, <code>expectedParams()</code>, <code>expectedSetup()</code>. You register an App or Route instance with any number of addresses and outlets using the <code>.addresses()</code> and <code>.outlets()</code> methods you see elsewhere in the file. If you put a name of an address or outlet into the expectedAddresses() or expectedOutlets() array that you don't pass in using those dot methods, Ether will complain. These methods act not only as protection, but as documentation.</p>
-    </aside>
 </div>
     `;
 }
