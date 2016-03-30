@@ -1,8 +1,32 @@
 import { escapeHTML } from 'utils';
 
-export default function() {
+export function rootRouteMountJS() {
+    return escapeHTML`
+'': RootRoute
+        .addresses('root')
+        .outlets('root')
+        .setup(addTweets, addTwitterAddress, addTweetTransformer),
+    `;
+}
+
+export function twitterRouteMountJS() {
+    return escapeHTML`
+'{twitter_username=\\\\w+}/{tweet_id=\\\\d+}':
+    TwitterRoute
+        .addresses('twitter')
+        .outlets('tweet')
+        .setup(addButtonData),
+    `;
+}
+
+export function twitterRootAppJS() {
     return escapeHTML`
 import { RootApp, makeOutlet } from 'ether';
+import RootRoute from './routes/root';
+import TwitterRoute from './routes/twitter';
+import URLRoute from './routes/url';
+
+// ...
 
 class TwitterRootApp extends RootApp {
     expectedOutlets() {
@@ -38,9 +62,9 @@ class TwitterRootApp extends RootApp {
                     .addresses('root')
                     .outlets('root')
                     .setup(addTweets, addTwitterAddress, addTweetTransformer),
-            '{twitter_username=\\w+}/{tweet_id=\\d+}':
+            '{twitter_username=\\\\w+}/{tweet_id=\\\\d+}':
                 TwitterRoute
-                    .addresses(twitterAddress)
+                    .addresses('twitter')
                     .outlets('tweet')
                     .setup(addButtonData),
         };

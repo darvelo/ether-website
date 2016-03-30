@@ -13,7 +13,7 @@ export default function() {
             self.sendTo('url', self.fullUrl);
         });
     }
-    var myApp = new TwitterRootApp({
+    var myApp = TwitterRootApp.create({
         windowLoad: updatePathbar,
         history: updatePathbar,
         interceptLinks: function all(event, promise) {

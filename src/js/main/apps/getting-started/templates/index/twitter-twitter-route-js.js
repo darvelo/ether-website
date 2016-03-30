@@ -1,3 +1,7 @@
+import { escapeHTML } from 'utils';
+
+export default function twitterTwitterRouteJS() {
+    return escapeHTML`
 import { Route } from 'ether';
 import TweetView from '../views/tweet';
 import navButton from '../templates/nav-button';
@@ -17,17 +21,7 @@ class TwitterRoute extends Route {
         return ['twitter_username', 'tweet_id'];
     }
     expectedSetup(setupVal) {
-        if (typeof setupVal === 'object' && typeof setupVal.linkTo === 'object') {
-            if (typeof setupVal.linkTo.address !== 'string') {
-                throw new Error('TwitterRoute setup: linkTo.address not a string');
-            }
-            if (typeof setupVal.linkTo.text !== 'string') {
-                throw new Error('TwitterRoute setup: linkTo.text not a string');
-            }
-            if (setupVal.linkTo.params && typeof setupVal.linkTo.params !== 'object') {
-                throw new Error('TwitterRoute setup: linkTo.params not an object');
-            }
-        }
+        // ...
     }
 
     init(setupVal) {
@@ -54,5 +48,5 @@ class TwitterRoute extends Route {
     }
     render(params, queryParams, diffs) { }
 }
-
-export default TwitterRoute;
+    `;
+}
