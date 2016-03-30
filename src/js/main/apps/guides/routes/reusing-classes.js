@@ -1,20 +1,22 @@
 import { ScrollRoute } from 'utils';
 
-class IndexRoute extends ScrollRoute {
+class ReusingClassesRoute extends ScrollRoute {
     expectedAddresses() {
-        return [':guides.index'];
+        return [':guides.reusingclasses'];
     }
     addressesHandlers() {
         return [function(){}];
     }
     expectedOutlets() {
-        return ['index'];
+        return ['reusingclasses'];
     }
 
     init() {
+        // use the 4 cases from test/acceptance/navigation
+
         let h1 = document.createElement('h1');
-        h1.textContent = 'Overview';
-        this.outlets.index.append(h1);
+        h1.textContent = 'Reusing Classes';
+        this.outlets.reusingclasses.append(h1);
     }
 
     render() {
@@ -23,4 +25,4 @@ class IndexRoute extends ScrollRoute {
     }
 }
 
-export default IndexRoute;
+export default ReusingClassesRoute;

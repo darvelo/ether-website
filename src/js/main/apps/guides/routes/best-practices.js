@@ -1,20 +1,22 @@
 import { ScrollRoute } from 'utils';
 
-class IndexRoute extends ScrollRoute {
+class BestPracticesRoute extends ScrollRoute {
     expectedAddresses() {
-        return [':guides.index'];
+        return [':guides.bestpractices'];
     }
     addressesHandlers() {
         return [function(){}];
     }
     expectedOutlets() {
-        return ['index'];
+        return ['bestpractices'];
     }
 
     init() {
+        // choosing addresses for apps and routes
+
         let h1 = document.createElement('h1');
-        h1.textContent = 'Overview';
-        this.outlets.index.append(h1);
+        h1.textContent = 'Best Practices';
+        this.outlets.bestpractices.append(h1);
     }
 
     render() {
@@ -23,4 +25,4 @@ class IndexRoute extends ScrollRoute {
     }
 }
 
-export default IndexRoute;
+export default BestPracticesRoute;
