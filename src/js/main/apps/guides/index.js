@@ -1,7 +1,8 @@
-import { App, makeOutlet } from 'ether';
+import { makeOutlet } from 'ether';
+import { ScrollApp } from 'utils';
 import IndexRoute from './routes/index';
 
-class GuidesApp extends App {
+class GuidesApp extends ScrollApp {
     expectedAddresses() {
         return [':guides'];
     }
@@ -23,17 +24,9 @@ class GuidesApp extends App {
         };
     }
 
-    deactivate() {
-        if ('scrollRestoration' in window.history) {
-            this.scrollTop = window.scrollY;
-        } else {
-            this.scrollTop = 0;
-        }
-    }
-
     render() {
+        super.render();
         this.sendTo(':.navbar', 'setActiveLink', this.expectedAddresses());
-        window.scrollTo(0, this.scrollTop);
     }
 }
 

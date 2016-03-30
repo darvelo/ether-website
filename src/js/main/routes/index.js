@@ -1,8 +1,8 @@
-import { Route } from 'ether';
+import { ScrollRoute } from 'utils';
 import template from '../templates/index';
 import DownloadView from '../views/download-btns';
 
-class IndexRoute extends Route {
+class IndexRoute extends ScrollRoute {
     expectedAddresses() {
         return [':.index'];
     }
@@ -23,15 +23,9 @@ class IndexRoute extends Route {
     prerender() {
         this.downloadView.reset();
     }
-    deactivate() {
-        if ('scrollRestoration' in window.history) {
-            this.scrollTop = window.scrollY;
-        } else {
-            this.scrollTop = 0;
-        }
-    }
+
     render() {
-        window.scrollTo(0, this.scrollTop);
+        super.render();
         this.sendTo(':.navbar', 'setActiveLink', this.expectedAddresses());
     }
 }

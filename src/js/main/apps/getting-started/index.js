@@ -1,10 +1,11 @@
-import { App, makeOutlet } from 'ether';
+import { makeOutlet } from 'ether';
+import { ScrollApp } from 'utils';
 import IndexRoute from './routes/index';
 import TOCRoute from './routes/toc';
 import template from './templates/index';
 import highlightCode from './utils/highlight-code';
 
-class GettingStartedApp extends App {
+class GettingStartedApp extends ScrollApp {
     expectedAddresses() {
         return [':gs'];
     }
@@ -55,17 +56,9 @@ class GettingStartedApp extends App {
         this.sendTo(':gs.toc', 'generateTOC');
     }
 
-    deactivate() {
-        if ('scrollRestoration' in window.history) {
-            this.scrollTop = window.scrollY;
-        } else {
-            this.scrollTop = 0;
-        }
-    }
-
     render() {
+        super.render();
         this.sendTo(':.navbar', 'setActiveLink', this.expectedAddresses());
-        window.scrollTo(0, this.scrollTop);
         return this.highlighted;
     }
 }

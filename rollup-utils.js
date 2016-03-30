@@ -17,6 +17,9 @@ rollup.rollup({
             exports: 'auto',
             moduleName: 'utils',
             dest: dest + 'utils.js',
+            globals: {
+                ether: 'Ether',
+            },
         }),
     ]);
 }).catch(function (err) {
