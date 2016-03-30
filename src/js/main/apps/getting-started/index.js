@@ -37,13 +37,20 @@ class GettingStartedApp extends App {
         };
     }
 
+    addHighlightedClass() {
+        this.outlets.gs.el.classList.add('highlighted');
+    }
+
     init() {
         let outlet = this.outlets.gs;
         outlet.innerHTML = template();
         if (window.Worker) {
-            this.highlighted = highlightCode(outlet);
+            this.highlighted = highlightCode(outlet).then(() => {
+                this.addHighlightedClass();
+            });
         } else {
             this.highlighted = null;
+            this.addHighlightedClass();
         }
         this.sendTo(':gs.toc', 'generateTOC');
     }
