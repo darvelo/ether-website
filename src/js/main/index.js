@@ -1,5 +1,6 @@
 import { RootApp, makeOutlet } from 'ether';
 import GettingStartedApp from './apps/getting-started/index';
+import GuidesApp from './apps/guides/index';
 import IndexRoute from './routes/index';
 import NavBarRoute from './routes/navbar';
 import FooterRoute from './routes/footer';
@@ -15,6 +16,11 @@ function navbarLinksData() {
             address: ':gs',
             dest: ':gs.index',
         },
+        {
+            text: 'Guides',
+            address: ':guides',
+            dest: ':guides.index',
+        }
     ];
 }
 
@@ -42,6 +48,11 @@ class EtherWebsite extends RootApp {
                     classNames: ['getting-started'],
                     mutable: true,
                 }),
+                outlets.guides = makeOutlet({
+                    tagName: 'section',
+                    classNames: ['guides'],
+                    mutable: true,
+                }),
                 outlets.footer = makeOutlet({
                     tagName: 'footer',
                     classNames: ['main-footer'],
@@ -60,6 +71,10 @@ class EtherWebsite extends RootApp {
                 GettingStartedApp
                     .addresses(':gs')
                     .outlets('gs'),
+            'guides':
+                GuidesApp
+                    .addresses(':guides')
+                    .outlets('guides'),
         };
     }
     mountConditionals() {
