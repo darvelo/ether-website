@@ -1,6 +1,6 @@
 @custom-media --medium-viewport (width >= 768px);
 @custom-media --large-viewport (width >= 1200px);
-@custom-selector :--main-pages .index, .getting-started;
+@custom-selector :--main-pages .index, .getting-started, .guides, .docs;
 
 @keyframes fade-out {
    0% {
@@ -322,4 +322,10 @@ body {
    border: none;
    width: 100%;
    height: 220px;
+}
+
+/* docs */
+
+.docs nav li.active {
+   background: orange;
 }

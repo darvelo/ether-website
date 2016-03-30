@@ -1,6 +1,11 @@
 import { RootApp, makeOutlet } from 'ether';
+
+// apps
 import GettingStartedApp from './apps/getting-started/index';
 import GuidesApp from './apps/guides/index';
+import DocsApp from './apps/docs/index';
+
+// routes
 import IndexRoute from './routes/index';
 import NavBarRoute from './routes/navbar';
 import FooterRoute from './routes/footer';
@@ -20,6 +25,11 @@ function navbarLinksData() {
             text: 'Guides',
             address: ':guides',
             dest: ':guides.index',
+        },
+        {
+            text: 'Docs',
+            address: ':docs',
+            dest: ':docs.index',
         }
     ];
 }
@@ -53,6 +63,11 @@ class EtherWebsite extends RootApp {
                     classNames: ['guides'],
                     mutable: true,
                 }),
+                outlets.docs = makeOutlet({
+                    tagName: 'section',
+                    classNames: ['docs'],
+                    mutable: true,
+                }),
                 outlets.footer = makeOutlet({
                     tagName: 'footer',
                     classNames: ['main-footer'],
@@ -80,6 +95,10 @@ class EtherWebsite extends RootApp {
                 GuidesApp
                     .addresses(':guides')
                     .outlets('guides'),
+            'docs':
+                DocsApp
+                    .addresses(':docs')
+                    .outlets('docs'),
         };
     }
     mountConditionals() {
