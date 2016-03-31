@@ -44,9 +44,12 @@ class GettingStartedApp extends ScrollApp {
 
     init() {
         let hrefs = {
-            'reusingclasses': this.linkTo(':guides.reusingclasses'),
-            'sharedprops': this.linkTo(':docs.shared'),
+            'reusingClassesGuide': this.linkTo(':guides.reusingclasses'),
+            'sharedPropsDocs': this.linkTo(':docs.shared'),
             'rootAppDocs': this.linkTo(':docs.rootapp'),
+            'renderCycleGuide': this.linkTo(':guides.rendercycle'),
+            'guides': this.linkTo(':guides.index'),
+            'docs': this.linkTo(':docs.index'),
         };
         let outlet = this.outlets.gs;
         outlet.innerHTML = template({hrefs});

@@ -318,13 +318,12 @@ body {
    }
 
    & aside {
-      display: inline;
-      float: right;
-      margin-left: 25px;
       padding: 10px 20px;
-      width: 30%;
-      background: gray(240);
+      background: gray(230);
+      box-shadow: inset 0 0 15px gray(128, 0.4);
       border-radius: 8px;
+
+      & h4 { margin: 10px 0; }
    }
 }
 
