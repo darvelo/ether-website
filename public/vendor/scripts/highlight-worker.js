@@ -19,6 +19,11 @@ function highlightBlockHTML(block) {
     return self.hljs.highlight('html', block);
 };
 
+function highlightBlockCSS(block) {
+    block = block.replace(regex, unescapeFn);
+    return self.hljs.highlight('css', block);
+};
+
 function highlightBlockJS(block) {
     block = block.replace(regex, unescapeFn);
     return self.hljs.highlight('js', block);
@@ -29,6 +34,9 @@ onmessage = function(event) {
     switch(event.data.type) {
         case 'html':
             highlightFn = highlightBlockHTML;
+            break;
+        case 'css':
+            highlightFn = highlightBlockCSS;
             break;
         case 'js':
             highlightFn = highlightBlockJS;

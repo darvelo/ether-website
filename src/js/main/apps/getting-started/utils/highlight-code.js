@@ -7,6 +7,10 @@ export default function highlightCode(outlet) {
                 done: false,
                 blocks: slice.call(outlet.querySelectorAll('pre code.html')),
             },
+            css: {
+                done: false,
+                blocks: slice.call(outlet.querySelectorAll('pre code.css')),
+            },
             js: {
                 done: false,
                 blocks: slice.call(outlet.querySelectorAll('pre code.js')),
