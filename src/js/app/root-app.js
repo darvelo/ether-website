@@ -20,12 +20,12 @@ function addTwitterAddress(setup) {
 function addTweetTransformer(setup) {
     // map the twitter route's param names
     // to the tweet model's properties
-    setup.transformer = function(paramName) {
+    setup.transformer = function(paramName, model) {
         switch(paramName) {
         case 'twitter_username':
-            return 'username';
+            return model.username;
         case 'tweet_id':
-            return 'tweetId';
+            return model.tweetId;
         }
     };
     return setup;
