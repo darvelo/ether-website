@@ -10,7 +10,7 @@ export function paramsExample1() {
 // queryParams
 {
     color: "red",
-    bold: true,
+    bold: "true",
     font_size: "16"
 }
 // diff
@@ -21,7 +21,7 @@ export function paramsExample1() {
     },
     queryParams: {
         color: [undefined, "red"],
-        bold: [undefined, true],
+        bold: [undefined, "true"],
         font_size: [undefined, "16"]
     }
 }
@@ -38,18 +38,18 @@ export function paramsExample2() {
 // queryParams - same as before
 {
     color: "red",
-    bold: true,
+    bold: "true",
     font_size: "16"
 }
 // diff
 // - contains the differences vs. the last call
 // - a param is null if no difference
-// - a base property is null is none of its params differed
+// - a base property is null is none of its params differed (like queryParams here)
 // - the entire diff argument is null if neither base property had any differences
 {
     params: {
-        twitter_username: null,
         tweet_id: ["12345", "6789"]
+        // twitter_username missing since there was no difference from the last call
     },
     queryParams: null
 }

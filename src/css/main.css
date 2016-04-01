@@ -302,11 +302,45 @@ body {
 /* getting started */
 
 .getting-started {
-   & p > code,
-   & dt > code {
+   padding-top: 1.5rem;
+
+   & .tutorial {
+      margin-bottom: 2rem;
+      padding: 0 10%;
+      background: white;
+   }
+
+   & dl {
+      position: relative;
+   }
+   & dl::before {
+      position: absolute;
+      top: 50%;
+      right: 105%;
+      height: 250px;
+      font-size: 200px;
+      line-height: 1.1;
+      content: '{';
+      color: gray(200);
+      transform: translateY(-50%);
+   }
+   & dt {
+      font-size: 1.1rem;
+   }
+   & dt::after {
+      display: block;
+      width: 50%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--main-color), white 40%);
+      content: '';
+   }
+   & dd {
+      padding: 3px 0 5px;
+   }
+
+   & p > code {
       display: inline-block;
-      padding: 2px 5px;
-      background: pink;
+      background: color(yellow alpha(0.3));
       border-radius: 3px;
    }
    & pre code {
@@ -319,9 +353,15 @@ body {
 
    & aside {
       padding: 10px 20px;
-      background: gray(230);
+      background: gray(250);
       box-shadow: inset 0 0 15px gray(128, 0.4);
       border-radius: 8px;
+
+      &.right-side {
+         float: right;
+         width: 30%;
+         margin-left: 10px;
+      }
 
       & h4 { margin: 10px 0; }
    }

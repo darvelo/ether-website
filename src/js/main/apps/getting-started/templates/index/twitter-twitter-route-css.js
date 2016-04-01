@@ -12,7 +12,7 @@ export default function twitterTwitterRouteCSS() {
     animation: 0.4s cubic-bezier(0.60, -.50, .50, 1) forwards bounce-down;
 }
 
-.tweet-container.ether-rendering:not(.ether-rendered),
+.tweet-container.ether-rendering,
 .tweet-container.ether-rendered {
     animation: 0.4s cubic-bezier(.50, 0, 0.40, 1.50) bounce-up;
 }
