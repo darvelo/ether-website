@@ -15,10 +15,7 @@ export default function navbarTemplate(ctx) {
     let listItems = linksData.map(createLinkTemplate(linkTo)).join('');
     return `
         <div class="container navbar-container">
-            <a class="navbar-logo" href='/'>
-                <img src="/public/images/logo.png" alt="Ether logo" />
-                Ether
-            </a>
+            <a class="navbar-logo" href='/'>Ether</a>
             <ul class="navbar-list">
                 ${listItems}
             </ul>

@@ -71,26 +71,17 @@ body {
 }
 
 .navbar-logo {
-   display: flex;
-   align-items: center;
-
    color: var(--main-color);
-   font-size: calc(var(--navbar-height) - 2rem);
+   font-family: 'euphoria_scriptregular';
+   font-size: calc(var(--navbar-height) - 1rem);
+   font-weight: bold;
    text-decoration: none;
-
-   & img {
-      max-height: calc(var(--navbar-height) - 20px);
-      margin-right: 20px;
-   }
 }
 
 .navbar-list {
    margin: 0;
    padding: 0;
    list-style: none;
-
-   @media (--medium-viewport) {
-   }
 }
 
 .navbar-list li {
