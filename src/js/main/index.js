@@ -60,12 +60,12 @@ class EtherWebsite extends RootApp {
                 }),
                 outlets.guides = makeOutlet({
                     tagName: 'section',
-                    classNames: ['guides'],
+                    classNames: ['guides', 'container'],
                     mutable: true,
                 }),
                 outlets.docs = makeOutlet({
                     tagName: 'section',
-                    classNames: ['docs'],
+                    classNames: ['docs', 'container'],
                     mutable: true,
                 }),
                 outlets.footer = makeOutlet({

@@ -18,22 +18,40 @@
 }
 
 :root {
+   height: 100%;
    font-size: 16px;
    overflow-y: scroll;
    --navbar-height: 4rem;
    --main-color: #ff3f00;
    --secondary-color: #ffca5e;
+   --text-color: #986046;
 }
 
 body {
-   padding-top: var(--navbar-height);
-   font-family: 'Source Sans Pro', 'Open Sans', Helvetica, sans-serif;
+   display: flex;
+   min-height: 100%;
+   background-color: #FFFBF7;
+   color: var(--text-color);
+   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+   font-feature-settings: 'kern', 'liga', 'pnum';
+   font-size: 1rem;
+   line-height: 1.5rem;
 
    & .ether-deactivated,
    & .ether-prerendering:not(.ether-rendered),
    & .ether-prerendered:not(.ether-rendered) {
       display: none;
    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+   color: #7e3e07;
+}
+
+.main-app {
+   display: flex;
+   flex-direction: column;
+   flex: 100%;
 }
 
 .container {
@@ -46,6 +64,10 @@ body {
 }
 
 :--main-pages {
+   flex: 100%;
+}
+
+:--main-pages .container {
    margin-bottom: 2rem;
 }
 
@@ -54,11 +76,7 @@ body {
 .navbar {
    display: flex;
    align-items: center;
-   position: fixed;
-   z-index: 1;
-   top: 0;
-   right: 0;
-   left: 0;
+   flex: 0 0 auto;
    height: var(--navbar-height);
    background-color: white;
    box-shadow: 0 2px 4px gray(0,.2);
@@ -119,6 +137,7 @@ body {
 }
 
 .main-footer {
+   flex: 0 0 auto;
    padding: 2rem 0;
    background: #2a2730;
    color: #99979c;
@@ -156,6 +175,7 @@ body {
 
 .tagline {
    font-size: 3rem;
+   line-height: normal;
    text-shadow: 0 1px 0 gray(0,.1);
 }
 
@@ -293,12 +313,12 @@ body {
 /* getting started */
 
 .getting-started {
+   margin: 0 auto;
    padding-top: 1.5rem;
 
    & .tutorial {
       margin-bottom: 2rem;
       padding: 0 10%;
-      background: white;
    }
 
    & dl {
@@ -342,7 +362,7 @@ body {
       opacity: 1;
    }
 
-   & aside {
+   & aside, & pre code {
       padding: 10px 20px;
       background: gray(250);
       box-shadow: inset 0 0 15px gray(128, 0.4);
@@ -365,13 +385,49 @@ body {
 }
 
 /* guides */
-
-.guides nav li.active {
-   background: orange;
-}
-
 /* docs */
 
-.docs nav li.active {
-   background: orange;
+.guides,
+.docs {
+   display: flex;
+}
+
+.getting-started,
+.guides-nav,
+.guides-article,
+.docs-nav,
+.docs-article {
+   padding-top: 1.5rem;
+   width: 75%;
+}
+
+.guides nav,
+.docs nav {
+   margin-right: 2em;
+   border-right: 1px solid #FFCEAB;
+   width: 25%;
+
+   & ul {
+      padding: 0;
+      list-style: none;
+   }
+   & li {
+      transition: border 0.1s linear;
+   }
+   & li.active {
+      border-left: 5px solid color(var(--main-color) lightness(+10%));
+      background: color(var(--main-color) lightness(+40%));
+      font-weight: bold;
+   }
+   & a {
+      display: block;
+      padding: 5px;
+      text-decoration: none;
+      color: inherit;
+      &:hover {
+         color: color(var(--text-color) lightness(+10%) saturation(+10%));
+         background: color(var(--main-color) alpha(0.05));
+      }
+      &:focus { outline: none; }
+   }
 }
