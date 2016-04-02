@@ -23,7 +23,7 @@ class PathbarRoute extends Route {
         let p = document.createElement('p');
         p.className = 'pathname';
         p.innerHTML = '<span class="prefix">pathname</span><span class="value"></span>';
-        this.outlets.pathbar.append(p);
+        this.outlets.pathbar.appendChild(p);
         this.text = p.querySelector('.value');
     }
 

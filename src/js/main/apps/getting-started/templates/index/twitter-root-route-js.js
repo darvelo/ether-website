@@ -27,7 +27,7 @@ class RootRoute extends Route {
     // render-cycle functions
     prerender(params, queryParams, diffs) {
         let template = this.template(this.getRandomTweet());
-        this.outlets.root.append(template);
+        this.outlets.root.appendChild(template);
     }
     deactivate() {
         return new Promise(resolve => {

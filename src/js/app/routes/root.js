@@ -66,12 +66,12 @@ class RootRoute extends Route {
     // in `prerender()` and in `render()` will always be `null`
     prerender(params, queryParams, diffs) {
         let template = this.template(this.getRandomTweet());
-        this.outlets.root.append(template);
+        this.outlets.root.appendChild(template);
     }
     deactivate() {
         return new Promise(resolve => {
             onAnimationEnd(this.outlets.root.el, () => {
-                this.outlets.root.empty();
+                this.outlets.root.innerHTML = '';
                 resolve();
             });
         });

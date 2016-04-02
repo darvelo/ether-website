@@ -16,7 +16,7 @@ class RenderCycleRoute extends ScrollRoute {
 
         let h1 = document.createElement('h1');
         h1.textContent = 'The Render Cycle';
-        this.outlets.rendercycle.append(h1);
+        this.outlets.rendercycle.appendChild(h1);
     }
 
     render() {

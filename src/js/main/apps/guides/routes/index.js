@@ -14,7 +14,7 @@ class IndexRoute extends ScrollRoute {
     init() {
         let h1 = document.createElement('h1');
         h1.textContent = 'Overview';
-        this.outlets.index.append(h1);
+        this.outlets.index.appendChild(h1);
     }
 
     render() {

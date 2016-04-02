@@ -16,7 +16,7 @@ class BestPracticesRoute extends ScrollRoute {
 
         let h1 = document.createElement('h1');
         h1.textContent = 'Best Practices';
-        this.outlets.bestpractices.append(h1);
+        this.outlets.bestpractices.appendChild(h1);
     }
 
     render() {

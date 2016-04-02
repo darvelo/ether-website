@@ -16,7 +16,7 @@ class ReusingClassesRoute extends ScrollRoute {
 
         let h1 = document.createElement('h1');
         h1.textContent = 'Reusing Classes';
-        this.outlets.reusingclasses.append(h1);
+        this.outlets.reusingclasses.appendChild(h1);
     }
 
     render() {

@@ -20,13 +20,13 @@ class TwitterRoute extends Route {
     init(setupVal) {
         // create a view that shows the tweet
         this.view = new TweetView();
-        this.outlets.tweet.append(this.view.el);
+        this.outlets.tweet.appendChild(this.view.el);
 
         // create nav button based on setup
         if (typeof setupVal === 'object' && setupVal.linkData) {
             let { address, params, text } = setupVal.linkData;
             let href = this.linkTo(address, params);
-            this.outlets.tweet.append(navButton(href, text));
+            this.outlets.tweet.appendChild(navButton(href, text));
         }
     }
 
