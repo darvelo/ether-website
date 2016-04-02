@@ -24,7 +24,7 @@ export function twitterRootAppJS() {
 import { RootApp, makeOutlet } from 'ether';
 import RootRoute from './routes/root';
 import TwitterRoute from './routes/twitter';
-import URLRoute from './routes/url';
+import PathbarRoute from './routes/pathbar';
 
 // ...
 
@@ -37,9 +37,9 @@ class TwitterRootApp extends RootApp {
             el: outlets.twitter.el,
             classNames: ['twitter-app'],
             append: [
-                outlets.url = makeOutlet({
+                outlets.pathbar = makeOutlet({
                     tagName: 'section',
-                    classNames: ['url'],
+                    classNames: ['pathbar'],
                     mutable: true,
                 }),
                 outlets.root = makeOutlet({
@@ -71,9 +71,9 @@ class TwitterRootApp extends RootApp {
     }
     mountConditionals() {
         return {
-            '*': URLRoute
-                    .addresses('url')
-                    .outlets('url'),
+            '*': PathbarRoute
+                    .addresses('pathbar')
+                    .outlets('pathbar'),
         };
     }
 }

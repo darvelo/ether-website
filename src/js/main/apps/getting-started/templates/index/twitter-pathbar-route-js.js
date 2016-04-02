@@ -1,14 +1,18 @@
+import { escapeHTML } from 'utils';
+
+export default function() {
+    return escapeHTML`
 import { Route } from 'ether';
 
-class URLRoute extends Route {
+class PathbarRoute extends Route {
     expectedAddresses() {
-        return ['url'];
+        return ['pathbar'];
     }
     addressesHandlers() {
         return ['receive'];
     }
     expectedOutlets() {
-        return ['url'];
+        return ['pathbar'];
     }
     expectedParams() {
         return [];
@@ -19,7 +23,7 @@ class URLRoute extends Route {
         let p = document.createElement('p');
         p.className = 'pathname';
         p.innerHTML = '<span class="prefix">pathname</span><span class="value"></span>';
-        this.outlets.url.append(p);
+        this.outlets.pathbar.append(p);
         this.text = p.querySelector('.value');
     }
 
@@ -28,5 +32,5 @@ class URLRoute extends Route {
         this.text.textContent = url;
     }
 }
-
-export default URLRoute;
+    `;
+}

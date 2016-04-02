@@ -76,14 +76,14 @@
     }
 }
 
-/* URL Route */
+/* Pathbar Route */
 
-.twitter-app .url {
+.twitter-app .pathbar {
     position: relative;
     z-index: 1;
 }
 
-.twitter-app .url .pathname {
+.twitter-app .pathbar .pathname {
     display: flex;
     margin: 0;
     height: 30px;

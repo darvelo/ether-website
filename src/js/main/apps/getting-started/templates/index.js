@@ -1,6 +1,6 @@
 import appHTML from './index/app-html';
 import { twitterRootAppJS, rootRouteMountJS, twitterRouteMountJS } from './index/twitter-root-app-js';
-import twitterURLRouteJS from './index/twitter-url-route-js';
+import twitterPathbarRouteJS from './index/twitter-pathbar-route-js';
 import twitterTwitterRouteJS from './index/twitter-twitter-route-js';
 import twitterTwitterRouteCSS from './index/twitter-twitter-route-css';
 import stateExample from './index/state-example-js';
@@ -22,7 +22,7 @@ export default function gettingStartedIndexTemplate(ctx) {
         <h2>Instantiating an App</h2>
         <p>Let's start the process at the end. Constructing our twitter app is very simple. Here are the relevant bits of HTML:</p>
         <pre><code class="hljs html">${appHTML()}</code></pre>
-        <p>In addition to <code>TwitterRootApp.create(...)</code>, we could have used <code>new TwitterRootApp(...)</code> with the same options. The first three can take event handler functions. Check out the docs for <a href="${ctx.hrefs.rootAppDocs}">a description of each option.</a></p>
+        <p>In addition to <code>TwitterRootApp.create(...)</code>, we could have used <code>new TwitterRootApp(...)</code> with the same options. The first three options in this case are event handler functions. Check out the docs for <a href="${ctx.hrefs.rootAppDocs}">a description of each option.</a></p>
         <p>Since all the event handlers call <code>updatePathbar</code>, we know that the function is called for all navigation events. The function signature for each handler is the same: it gets the relevant DOM event and a promise that resolves if navigation succeeded or rejects if there was no route matching the URL destination (404). <code>this</code> is the TwitterRootApp instance and <code>sendTo()</code> is the way we communicate to different parts of our application using addresses, which we'll talk about later.</p>
         <p><strong>Note:</strong> Event handlers are not attached until you call <code>start()</code> on your RootApp instance.</p>
     </section>
@@ -56,7 +56,7 @@ export default function gettingStartedIndexTemplate(ctx) {
             <dt><code>!</code></dt>
             <dd>Takes a comma-separated list of addresses, such as <code>!root</code>. The route(s) will be rendered if the mount rendered in <code>mounts()</code> was <strong>not registered with any</strong> of the addresses listed.</dd>
         </dl>
-        <p>For instance, the URLRoute in our twitter app is mounted using the <code>*</code> logic, so it'll be rendered no matter what URL matching occurs. If we instead mounted it on <code>+twitter</code>, it would only be rendered when the TwitterRoute was rendered, on a URL path like <code>/app/neiltyson/12345</code>, but not <code>/app/</code>. If we mounted it on <code>!twitter</code>, it would be rendered whenever any mount is rendered <em>except TwitterRoute,</em> which in this case is only RootRoute, on URL path <code>/app/</code> and nowhere else.</p>
+        <p>For instance, the PathbarRoute in our twitter app is mounted using the <code>*</code> logic, so it'll be rendered no matter what URL matching occurs. If we instead mounted it on <code>+twitter</code>, it would only be rendered when the TwitterRoute was rendered, on a URL path like <code>/app/neiltyson/12345</code>, but not <code>/app/</code>. If we mounted it on <code>!twitter</code>, it would be rendered whenever any mount is rendered <em>except TwitterRoute,</em> which in this case is only RootRoute, on URL path <code>/app/</code> and nowhere else.</p>
         <p>Conditional mounts are ideal for things like navigation bars, sidebars, footers, notifications, or other widgets. Any time you need a specific component or section to be available on different URL paths, a conditional mount may be just what you need.</p>
     </section>
 
@@ -68,9 +68,9 @@ export default function gettingStartedIndexTemplate(ctx) {
     <section class="tutorial">
         <h2>Route</h2>
         <p>The App's mount() method allows other Apps to be mounted on a portion of a URL path, but for navigation to succeed a Route must be mounted on the final portion of the URL. In our twitter app we created three routes.</p>
-        <h3>URLRoute</h3>
-        <p>We want this Route subclass to display the current URL (the URLRoute name isn't special.. we could have used any name). Because it was mounted as a <code>*</code> conditional mount, it'll be rendered regardless of which of the other routes (mounted in <code>TwitterRootApp#mount()</code>) handles a URL request, which makes it useful as a kind of header or persistent widget.</p>
-        <pre><code class="hljs js">${twitterURLRouteJS()}</code></pre>
+        <h3>PathbarRoute</h3>
+        <p>We want this Route subclass to display the current URL. Because it was mounted as a <code>*</code> conditional mount, it'll be rendered regardless of which of the other routes (mounted in <code>TwitterRootApp#mount()</code>) handles a URL request, which makes it useful as a kind of header or persistent widget.</p>
+        <pre><code class="hljs js">${twitterPathbarRouteJS()}</code></pre>
         <p>In the init() method we create <code>&lt;span class="value"&gt;</code> to hold the URL text and assign it to <code>this.text</code>. What's interesting is the receive() method, which takes a url argument and assigns it to the element's text content. How does this work?</p>
 
         <aside class="right-side">
@@ -86,7 +86,7 @@ export default function gettingStartedIndexTemplate(ctx) {
         <p>expectedParams() is a bit different&mdash;it allows you to return an array of parameter names that have been collected in the URL paths mounted up to this point. You can leave out any you don't need, and only the ones you list will be provided in the render functions (which we'll talk about later). Ether will throw a helpful error if you list parameter names that don't exist on that URL.</p>
         <p><strong>Together, these methods act not only as protection against setup mistakes, but also as documentation.</strong> You'll know exactly which addresses an App or Route goes by and which outlets, URL parameters, and setup values are available inside its member functions.</p>
         <h4>addressesHandlers</h4>
-        <p>If expectedAddresses() returns a list of addresses your class goes by, addressesHandlers() returns a list of functions that are called when their respective addreses are sent data from elsewhere in the application with the <code>sendTo(address, data...)</code> method. We see in the code that our URLRoute goes by the address <code>'url'</code> and that the function that will be called on <code>sendTo('url', data...)</code> is <code>receive(data...)</code>. Now you know why the <code>updatePathbar</code> function in the HTML at the beginning of this article works: after navigation succeeds the RootApp instance passes the current URL to URLRoute with <code>self.sendTo('url', self.fullUrl)</code>.</p>
+        <p>If expectedAddresses() returns a list of addresses your class goes by, addressesHandlers() returns a list of functions that are called when their respective addreses are sent data from elsewhere in the application with the <code>sendTo(address, data...)</code> method. We see in the code that our PathbarRoute goes by the address <code>'pathbar'</code> and that the function that will be called on <code>sendTo('pathbar', data...)</code> is <code>receive(data...)</code>. Now you know why the <code>updatePathbar</code> function in the HTML at the beginning of this article works: after navigation succeeds the RootApp instance passes the current URL to PathbarRoute with <code>self.sendTo('pathbar', self.fullUrl)</code>.</p>
         <p>It may seem strange to decouple the address names and their handler functions into two methods, but there's a good reason: it makes class reuse easier. Subclasses can override expectedAddresses() while leaving addressesHandlers() untouched.</p>
 
         <h3>TwitterRoute</h3>

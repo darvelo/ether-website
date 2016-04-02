@@ -10,7 +10,7 @@ export default function() {
     function updatePathbar(event, promise) {
         var self = this;
         promise.then(function() {
-            self.sendTo('url', self.fullUrl);
+            self.sendTo('pathbar', self.fullUrl);
         });
     }
     var myApp = TwitterRootApp.create({
