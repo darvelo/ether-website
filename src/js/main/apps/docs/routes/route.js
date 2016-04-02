@@ -1,4 +1,5 @@
 import { ScrollRoute } from 'utils';
+import template from '../templates/route';
 
 class RouteRoute extends ScrollRoute {
     expectedAddresses() {
@@ -12,9 +13,7 @@ class RouteRoute extends ScrollRoute {
     }
 
     init() {
-        let h1 = document.createElement('h1');
-        h1.textContent = 'Route';
-        this.outlets.route.append(h1);
+        this.outlets.route.innerHTML = template();
     }
 
     render() {

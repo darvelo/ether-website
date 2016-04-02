@@ -75,7 +75,7 @@ export default function gettingStartedIndexTemplate(ctx) {
 
         <aside class="right-side">
             <h4>A Word on API Similarities between Ether Classes</h4>
-            <p>Most methods and variables on RootApp, App, and Route overlap, which makes for quick learning of the Ether API surface. <a href="${ctx.hrefs.sharedPropsDocs}">Check out the docs to learn more</a>.</p>
+            <p>Most methods and properties on RootApp, App, and Route overlap, which makes for quick learning of the Ether API surface. <a href="${ctx.hrefs.sharedPropsDocs}">Check out the docs to learn more</a>.</p>
         </aside>
 
         <h4>The expected*() Methods</h4>

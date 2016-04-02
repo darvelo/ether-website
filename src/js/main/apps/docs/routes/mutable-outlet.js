@@ -1,19 +1,19 @@
 import { ScrollRoute } from 'utils';
-import template from '../templates/rootapp';
+import template from '../templates/mutable-outlet';
 
-class RootAppRoute extends ScrollRoute {
+class MutableOutletRoute extends ScrollRoute {
     expectedAddresses() {
-        return [':docs.rootapp'];
+        return [':docs.mutableoutlet'];
     }
     addressesHandlers() {
         return [function(){}];
     }
     expectedOutlets() {
-        return ['rootapp'];
+        return ['mutableoutlet'];
     }
 
     init() {
-        this.outlets.rootapp.innerHTML = template();
+        this.outlets.mutableoutlet.innerHTML = template();
     }
 
     render() {
@@ -22,4 +22,4 @@ class RootAppRoute extends ScrollRoute {
     }
 }
 
-export default RootAppRoute;
+export default MutableOutletRoute;

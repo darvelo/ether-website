@@ -1,19 +1,19 @@
 import { ScrollRoute } from 'utils';
-import template from '../templates/rootapp';
+import template from '../templates/outlet';
 
-class RootAppRoute extends ScrollRoute {
+class OutletRoute extends ScrollRoute {
     expectedAddresses() {
-        return [':docs.rootapp'];
+        return [':docs.outlet'];
     }
     addressesHandlers() {
         return [function(){}];
     }
     expectedOutlets() {
-        return ['rootapp'];
+        return ['outlet'];
     }
 
     init() {
-        this.outlets.rootapp.innerHTML = template();
+        this.outlets.outlet.innerHTML = template();
     }
 
     render() {
@@ -22,4 +22,4 @@ class RootAppRoute extends ScrollRoute {
     }
 }
 
-export default RootAppRoute;
+export default OutletRoute;

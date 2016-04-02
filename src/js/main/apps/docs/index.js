@@ -6,6 +6,8 @@ import IndexRoute from './routes/index';
 import RootAppRoute from './routes/rootapp';
 import AppRoute from './routes/app';
 import RouteRoute from './routes/route';
+import OutletRoute from './routes/outlet';
+import MutableOutletRoute from './routes/mutable-outlet';
 import SharedRoute from './routes/shared';
 
 function addSidebarLinksData() {
@@ -27,7 +29,15 @@ function addSidebarLinksData() {
             address: ':docs.route',
         },
         {
-            text: 'Shared Methods and Variables',
+            text: 'Outlet',
+            address: ':docs.outlet',
+        },
+        {
+            text: 'MutableOutlet',
+            address: ':docs.mutableoutlet',
+        },
+        {
+            text: 'Shared Methods and Properties',
             address: ':docs.shared',
         }
     ];
@@ -72,6 +82,16 @@ class DocsApp extends App {
                     classNames: ['docs-article'],
                     mutable: true,
                 }),
+                outlets.outlet = makeOutlet({
+                    tagName: 'article',
+                    classNames: ['docs-article'],
+                    mutable: true,
+                }),
+                outlets.mutableoutlet = makeOutlet({
+                    tagName: 'article',
+                    classNames: ['docs-article'],
+                    mutable: true,
+                }),
                 outlets.shared = makeOutlet({
                     tagName: 'article',
                     classNames: ['docs-article'],
@@ -95,7 +115,13 @@ class DocsApp extends App {
             'route': RouteRoute
                     .addresses(':docs.route')
                     .outlets('route'),
-            'shared-methods-and-variables': SharedRoute
+            'outlet': OutletRoute
+                    .addresses(':docs.outlet')
+                    .outlets('outlet'),
+            'mutable-outlet': MutableOutletRoute
+                    .addresses(':docs.mutableoutlet')
+                    .outlets('mutableoutlet'),
+            'shared-methods-and-properties': SharedRoute
                     .addresses(':docs.shared')
                     .outlets('shared'),
         };

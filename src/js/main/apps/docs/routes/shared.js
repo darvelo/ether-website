@@ -1,4 +1,5 @@
 import { ScrollRoute } from 'utils';
+import template from '../templates/shared';
 
 class SharedRoute extends ScrollRoute {
     expectedAddresses() {
@@ -12,9 +13,7 @@ class SharedRoute extends ScrollRoute {
     }
 
     init() {
-        let h1 = document.createElement('h1');
-        h1.textContent = 'Shared Methods and Variables';
-        this.outlets.shared.append(h1);
+        this.outlets.shared.innerHTML = template();
     }
 
     render() {
