@@ -33,6 +33,9 @@ class NavBarRoute extends Route {
     }
 
     setActiveLink(addresses) {
+        if (addresses === null) {
+            addresses = [];
+        }
         this.listItems.forEach(li => {
             let liAddr = li.getAttribute('data-address');
             if (addresses.some(addr => addr === liAddr)) {

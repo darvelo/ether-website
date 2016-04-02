@@ -9,6 +9,7 @@ import DocsApp from './apps/docs/index';
 import IndexRoute from './routes/index';
 import NavBarRoute from './routes/navbar';
 import FooterRoute from './routes/footer';
+import The404Route from './routes/404';
 
 function navbarLinksData() {
     return [
@@ -68,6 +69,11 @@ class EtherWebsite extends RootApp {
                     classNames: ['docs', 'container'],
                     mutable: true,
                 }),
+                outlets.the404 = makeOutlet({
+                    tagName: 'section',
+                    classNames: ['the404', 'container'],
+                    mutable: true,
+                }),
                 outlets.footer = makeOutlet({
                     tagName: 'footer',
                     classNames: ['main-footer'],
@@ -87,6 +93,9 @@ class EtherWebsite extends RootApp {
             '': IndexRoute
                     .addresses(':.index')
                     .outlets('index'),
+            '404': The404Route
+                    .addresses(':.404')
+                    .outlets('the404'),
             'getting-started':
                 GettingStartedApp
                     .addresses(':gs')

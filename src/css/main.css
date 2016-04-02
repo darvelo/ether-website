@@ -1,6 +1,6 @@
 @custom-media --medium-viewport (width >= 768px);
 @custom-media --large-viewport (width >= 1200px);
-@custom-selector :--main-pages .index, .getting-started, .guides, .docs;
+@custom-selector :--main-pages .index, .getting-started, .guides, .docs, .the404;
 
 @keyframes fade-out {
    0% {
@@ -94,6 +94,7 @@ h1, h2, h3, h4, h5, h6 {
    font-size: calc(var(--navbar-height) - 1rem);
    font-weight: bold;
    text-decoration: none;
+   &:focus { outline: none; }
 }
 
 .navbar-list {
@@ -362,6 +363,9 @@ h1, h2, h3, h4, h5, h6 {
       opacity: 1;
    }
 
+   & aside {
+      color: color(var(--text-color) lightness(-10%));
+   }
    & aside, & pre code {
       padding: 10px 20px;
       background: gray(250);
@@ -430,4 +434,28 @@ h1, h2, h3, h4, h5, h6 {
       }
       &:focus { outline: none; }
    }
+}
+
+/* docs */
+
+.docs-article {
+   & h2 {
+      margin-top: 3rem;
+   }
+   & h3 {
+      margin-top: 2rem;
+   }
+   & h4 {
+      margin: 0;
+   }
+   & code {
+      color: black;
+   }
+}
+
+/* 404 */
+
+.the404 h1 {
+   text-align: center;
+   margin-top: 2em;
 }

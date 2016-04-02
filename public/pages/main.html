@@ -35,6 +35,7 @@
                 promise.then(function() {
                     console.log('good url', self.fullUrl);
                 }, function(err) {
+                    self.navigate('404', {pushState: false});
                     console.log('bad url', self.fullUrl, err);
                 });
             }
