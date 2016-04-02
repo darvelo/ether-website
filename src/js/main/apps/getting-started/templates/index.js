@@ -13,9 +13,9 @@ export default function gettingStartedIndexTemplate(ctx) {
 <div class="container">
     <section class="tutorial">
         <h1>Getting Started</h1>
-        <p>Welcome to development with Ether! This page will ease you into learning the three major components in Ether and how they work together. They are RootApp, App, and Route. We'll build <a href="/app/" target="_blank">a small app</a> that shows random tweets and learn how to integrate it into a webpage. The <a href="https://github.com/darvelo/ether-website/tree/master/src/js/app">source code</a> is available on GitHub. Here's the app in action:</p>
+        <p>Welcome to development with Ether! This page will ease you into learning the three major components in Ether and how they work together. They are <code>RootApp</code>, <code>App</code>, and <code>Route</code>.</p>
+        <p>We've built <a href="/app/" target="_blank">a small example app</a> and posted the <a href="https://github.com/darvelo/ether-website/tree/master/src/js/app">source code</a> on GitHub. Here's the app in action:</p>
         <iframe id="app-iframe" src="/app/"></iframe>
-        <p>If you're not using ES2015, you can use the extend() method on each of the major classes, such as <code>Route.extend()</code>, instead of the <code>class ... extends ...</code> syntax. Be aware that the import file structure has no particular meaning, and you can use whatever file structure you like.</p>
     </section>
 
     <section class="tutorial">
@@ -32,6 +32,7 @@ export default function gettingStartedIndexTemplate(ctx) {
         <p>A RootApp is the starting point for the whole application and the only constructor you call explicitly. Let's <a href="https://github.com/darvelo/ether-website/blob/master/src/js/app/root-app.js">check out the code</a> and see how it works.</p>
         <pre><code class="hljs js">${twitterRootAppJS()}</code></pre>
         <p>This may look a bit intimidating, but about 50% of all you need to know to use Ether is in these four methods. We'll break it down by method.</p>
+        <p><strong>Note:</strong> If you're not using ES2015, you can use the extend() method on each of the major classes, such as <code>RootApp.extend()</code>, instead of the <code>class ... extends ...</code> syntax. Be aware that the import file structure has no particular meaning, so you're free to use whatever file structure you like.</p>
         <h3>createOutlets()</h3>
         <p>Outlets provide a strategy for managing the DOM. The idea is that an outlet is owned by a single App or Route, and wraps a DOM element that survives inside the DOM for the life of the application. Ether's <code>Outlet</code> class restricts access to the wrapped DOM element and some of its methods, but exposes methods to add or remove child elements within it. Since an outlet's wrapped element can be made to be an ancestor to the DOM element of another outlet, it's important to prevent actions like clearing the outlet's HTML, which may accidentally remove a child outlet from the DOM. If you want more control, you can use Ether's <code>MutableOutlet</code> class which gives direct access to the element through its <code>el</code> property.</p>
         <p>In this example we're using the <code>makeOutlet</code> helper function to create outlets and add CSS classes without invoking these constructors directly. We can pass in an existing element or ask it to create one with a specific tagname. We also determine whether we want a MutableOutlet with the <code>mutable</code> option.</p>
