@@ -1,7 +1,6 @@
-import { ScrollApp } from 'utils';
+import { ScrollApp, highlightCode } from 'utils';
 import IndexRoute from './routes/index';
 import template from './templates/index';
-import highlightCode from './utils/highlight-code';
 
 class GettingStartedApp extends ScrollApp {
     expectedAddresses() {
