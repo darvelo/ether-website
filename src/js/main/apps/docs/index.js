@@ -94,7 +94,7 @@ class DocsApp extends App {
                 }),
                 outlets.shared = makeOutlet({
                     tagName: 'article',
-                    classNames: ['docs-article'],
+                    classNames: ['docs-article', 'docs-shared-methods'],
                     mutable: true,
                 }),
             ],

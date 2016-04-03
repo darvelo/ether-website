@@ -1,6 +1,7 @@
 @custom-media --medium-viewport (width >= 768px);
 @custom-media --large-viewport (width >= 1200px);
 @custom-selector :--main-pages .index, .getting-started, .guides, .docs, .the404;
+@custom-selector :--code-pages .getting-started, .docs-shared-methods;
 
 @keyframes fade-out {
    0% {
@@ -10,6 +11,16 @@
    100% {
       opacity: 0;
       display: none;
+   }
+}
+
+:--code-pages {
+   & pre code {
+      transition: opacity 0.2s ease-out;
+      opacity: 0;
+   }
+   &.highlighted pre code {
+      opacity: 1;
    }
 }
 
@@ -355,13 +366,6 @@ h1, h2, h3, h4, h5, h6 {
       background: color(yellow alpha(0.3));
       border-radius: 3px;
    }
-   & pre code {
-      transition: opacity 0.2s ease-out;
-      opacity: 0;
-   }
-   &.highlighted pre code {
-      opacity: 1;
-   }
 
    & aside {
       color: color(var(--text-color) lightness(-10%));
@@ -401,7 +405,7 @@ h1, h2, h3, h4, h5, h6 {
 .guides-article,
 .docs-nav,
 .docs-article {
-   padding-top: 1.5rem;
+   padding: 1.5rem 0;
    width: 75%;
 }
 
@@ -450,6 +454,11 @@ h1, h2, h3, h4, h5, h6 {
    }
    & code {
       color: black;
+   }
+   & .arrow {
+      font-size: 1.4em;
+      color: black;
+      vertical-align: bottom;
    }
 }
 
