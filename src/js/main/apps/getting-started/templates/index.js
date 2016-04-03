@@ -47,7 +47,7 @@ export default function gettingStartedIndexTemplate(ctx) {
         <p>Note that because the URL path is a string, we have to escape the backslash character. The only other rule is that you can't use slashes or capturing groups (unescaped parentheses) within the regex value, but <code>[^/]</code>, <code>(?:</code>, <code>(?!</code>, and <code>(?=</code> are allowed.</p>
         <p>When a URL is being matched against URL paths in mount() during navigation, matching begins with the path having the most slash characters and proceeds until matching last against the path with the least slash characters.</p>
         <h3>mountConditionals()</h3>
-        <p>Ether has the unique idea of <em>conditional mounts</em> which are mounts that will be rendered if certain conditions are met. Conditional mounts must be a Route class or an array of Route classes or subclasses. Instead of URL paths, there are three logic operators: <code>*</code>, <code>+</code>, and <code>!</code>.</p>
+        <p>Ether has the unique idea of <em>conditional mounts</em> which are mounts that will be rendered if certain conditions are met. Conditional mounts must be a Route subclass or an array of Route subclasses. Instead of URL paths, there are three logic operators: <code>*</code>, <code>+</code>, and <code>!</code>.</p>
         <dl>
             <dt><code>*</code></dt>
             <dd>The route(s) will be rendered if any of the mounts in the <code>mounts()</code> method is rendered.</dd>
@@ -146,7 +146,7 @@ export default function gettingStartedIndexTemplate(ctx) {
             <dt>ether-rendered</dt>
             <dd>Set after render() execution completes, or if a Promise was returned, when the promise resolves.</dd>
         </dl>
-        <p>Note that if an Ether class is currently rendered and the user navigates to a URL where the class remains a mount or conditional mount, or the user navigates to the same path but with different params or query params (e.g. <code>/app/neiltyson/12345</code> then <code>/app/IronMaiden/6789</code>), the <code>ether-rendered</code> CSS class will continue to apply while the <code>ether-prerendering/ether-prerendered/ether-rendering</code> CSS classes are applied. If the user navigates away, deactivation occurs and <code>ether-deactivating</code> is applied as <code>ether-rendered</code> is removed.</p>
+        <p>Note that if an Ether class is currently rendered and the user navigates to a different URL where the class remains a mount or conditional mount, or the user navigates to the same path but with different params or query params (e.g. <code>/app/neiltyson/12345</code> then <code>/app/IronMaiden/6789</code>), the <code>ether-rendered</code> CSS class will continue to apply while the <code>ether-prerendering/ether-prerendered/ether-rendering</code> CSS classes are applied. If the user navigates away, deactivation occurs and <code>ether-deactivating</code> is applied as <code>ether-rendered</code> is removed.</p>
         <p>Ether applies this state not only to outlets, but to the Ether classes themselves. At any time you can inspect <code>this.state</code> in an App or Route and know what states apply to your class and its outlets. Here's en example of <code>this.state</code> for a class currently executing the render() method:</p>
         <pre><code class="hljs js">${stateExample()}</code></pre>
 
@@ -157,7 +157,7 @@ export default function gettingStartedIndexTemplate(ctx) {
         <pre><code class="hljs js">${twitterRootRouteJS()}</code></pre>
 
         <p>Since this route is mounted on a URL path with no params, the params argument in prerender() and render() methods will always be null. If the user never manually enters query params into the address bar and we never use links that have them, the queryParams argument will also always be null.</p>
-        <p>There's only one thing left in this file we haven't already touched on, and that's what linkTo() is and how it works. linkTo() takes three arguments, the last of which is optional: an address, an hash of param names whose values can fill the URL at that address, and an options hash.</p>
+        <p>There's only one thing left in this file we haven't already touched on, and that's what linkTo() is and how it works. linkTo() takes three arguments, the last of which is optional: an address, an model whose values can fill the URL at that address, and an options hash.</p>
         <p>When you use linkTo(), what you're saying is, "I want an href I can use in a link or that I can pass to a direct call to navigate()." In <code>RootRoute#template()</code> we create a button that when clicked, kicks off navigation to the TwitterRoute, passing the data it needs to render the tweet through the URL. That data is the <code>twitter_username</code> and <code>tweet_id</code> params we've seen before.</p>
         <p>There's a problem, though.. TwitterRoute is mounted on this URL:</p>
         <pre><code class="hljs js">'{twitter_username=\\\\w+}/{tweet_id=\\\\d+}'</code></pre>

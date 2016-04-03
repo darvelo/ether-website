@@ -51,6 +51,7 @@ export function paramsExample2() {
         tweet_id: ["12345", "6789"]
         // twitter_username missing since there was no difference from the last call
     },
+    // no difference in any of the queryParams compared to the last call
     queryParams: null
 }
     `;
