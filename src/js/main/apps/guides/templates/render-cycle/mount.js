@@ -2,7 +2,7 @@ import { escapeHTML } from 'utils';
 
 export default function mountExample() {
     return escapeHTML`
-class MyRootApp {
+class MyRootApp extends RootApp {
     // ...
     mount() {
         return {
@@ -24,8 +24,7 @@ class MyRootApp {
         };
     }
 }
-
-class UserApp {
+class UserApp extends App {
     // ...
     mount() {
         return {
@@ -34,7 +33,7 @@ class UserApp {
         };
     }
 }
-class TodoApp {
+class TodoApp extends App {
     // ...
     mount() {
         return {

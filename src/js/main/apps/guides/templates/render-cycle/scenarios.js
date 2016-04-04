@@ -36,7 +36,7 @@ Scenario 4: going from a deep route to a deep route on a different app
 }
 
 export function scenarios() {
-    return escapeHTML`
+    return `
 ${scenario0()}
 
 ${scenario1()}
