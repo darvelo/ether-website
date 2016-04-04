@@ -1,6 +1,7 @@
 @custom-media --medium-viewport (width >= 768px);
 @custom-media --large-viewport (width >= 1200px);
 @custom-selector :--main-pages .index, .getting-started, .guides, .docs, .the404;
+@custom-selector :--content-pages .getting-started, .guides, .docs, .the404;
 @custom-selector :--code-pages .getting-started, .docs-shared-methods, .guides-render-cycle;
 
 @keyframes fade-out {
@@ -46,7 +47,6 @@ body {
    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
    font-feature-settings: 'kern', 'liga', 'pnum';
    font-size: 1rem;
-   line-height: 1.5rem;
 
    & .ether-deactivated,
    & .ether-prerendering:not(.ether-rendered),
@@ -80,6 +80,10 @@ h1, h2, h3, h4, h5, h6 {
 
 :--main-pages .container {
    margin-bottom: 2rem;
+}
+
+:--content-pages {
+   line-height: 1.5rem;
 }
 
 /* navbar */
