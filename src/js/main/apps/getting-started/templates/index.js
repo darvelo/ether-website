@@ -34,7 +34,7 @@ export default function gettingStartedIndexTemplate(ctx) {
         <p>This may look a bit intimidating, but about 50% of all you need to know to use Ether is in these four methods. We'll break it down by method.</p>
         <p><strong>Note:</strong> If you're not using ES2015, you can use the extend() method on each of the major classes, such as <code>RootApp.extend()</code>, instead of the <code>class ... extends ...</code> syntax. Be aware that the import file structure has no particular meaning, so you're free to use whatever file structure you like.</p>
         <h3>createOutlets()</h3>
-        <p>Outlets provide a strategy for managing the DOM. The idea is that an outlet is owned by a single App or Route, and wraps a DOM element that survives inside the DOM for the life of the application. Ether's <code>Outlet</code> class restricts access to the wrapped DOM element and some of its methods, but exposes methods to add or remove child elements within it. Since an outlet's wrapped element can be made to be an ancestor to the DOM element of another outlet, it's important to prevent actions like clearing the outlet's HTML, which may accidentally remove a child outlet from the DOM. If you want more control, you can use Ether's <code>MutableOutlet</code> class which gives direct access to the element through its <code>el</code> property.</p>
+        <p>Outlets provide a strategy for managing the DOM. The idea is that an outlet is owned by a single App or Route, and wraps a DOM element that survives inside the DOM for the life of the application. Ether's <code>Outlet</code> class restricts access to the wrapped DOM element and its methods, but exposes methods to find, add, or remove child elements within it. Since an outlet's wrapped element can be made to be an ancestor to the DOM element of another outlet, it's important to prevent actions like clearing the outlet's HTML, which may accidentally remove a child outlet from the DOM. If you want more control, you can use Ether's <code>MutableOutlet</code> class which gives direct access to the element through its <code>el</code> property.</p>
         <p>In this example we're using the <code>makeOutlet</code> helper function to create outlets and add CSS classes without invoking these constructors directly. We can pass in an existing element or ask it to create one with a specific tagname. We also determine whether we want a MutableOutlet with the <code>mutable</code> option.</p>
         <p>The <code>outlets</code> argument received in createOutlets() is the same object that was passed into <code>TwitterRootApp.create()</code>. Whatever object is returned by createOutlets() will be the named outlets owned by the app, set to <code>this.outlets</code>.</p>
         <h3>mount()</h3>
@@ -136,15 +136,15 @@ export default function gettingStartedIndexTemplate(ctx) {
             <dt>ether-deactivating</dt>
             <dd>Set before deactivate() execution and removed when execution completes, or if a Promise was returned, when the promise resolves.</dd>
             <dt>ether-deactivated</dt>
-            <dd>Set after deactivate() execution completes, or if a Promise was returned, when the promise resolves.</dd>
+            <dd>Set after deactivate() execution completes, or if a Promise was returned, when the promise resolves. Removed when <code>ether-prerendering</code> is set.</dd>
             <dt>ether-prerendering</dt>
             <dd>Set before prerender() execution and removed when execution completes, or if a Promise was returned, when the promise resolves.</dd>
             <dt>ether-prerendered</dt>
-            <dd>Set after prerender() execution completes, or if a Promise was returned, when the promise resolves.</dd>
+            <dd>Set after prerender() execution completes, or if a Promise was returned, when the promise resolves. Removed when <code>ether-rendering</code> is set.</dd>
             <dt>ether-rendering</dt>
             <dd>Set before render() execution and removed when execution completes, or if a Promise was returned, when the promise resolves.</dd>
             <dt>ether-rendered</dt>
-            <dd>Set after render() execution completes, or if a Promise was returned, when the promise resolves.</dd>
+            <dd>Set after render() execution completes, or if a Promise was returned, when the promise resolves. Removed when <code>ether-deactivating</code> is set.</dd>
         </dl>
         <p>Note that if an Ether class is currently rendered and the user navigates to a different URL where the class remains a mount or conditional mount, or the user navigates to the same path but with different params or query params (e.g. <code>/app/neiltyson/12345</code> then <code>/app/IronMaiden/6789</code>), the <code>ether-rendered</code> CSS class will continue to apply while the <code>ether-prerendering/ether-prerendered/ether-rendering</code> CSS classes are applied. If the user navigates away, deactivation occurs and <code>ether-deactivating</code> is applied as <code>ether-rendered</code> is removed.</p>
         <p>Ether applies this state not only to outlets, but to the Ether classes themselves. At any time you can inspect <code>this.state</code> in an App or Route and know what states apply to your class and its outlets. Here's en example of <code>this.state</code> for a class currently executing the render() method:</p>

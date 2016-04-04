@@ -2,7 +2,7 @@ import { escapeHTML } from 'utils';
 
 export default function conditionalMountExample() {
     return escapeHTML`
-class MyRootRoute {
+class MyRootApp {
     // ...
     mountConditionals() {
         return {

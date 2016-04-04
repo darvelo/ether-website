@@ -20,7 +20,7 @@ export default function() {
 <h2>Properties</h2>
 <p>These are all proxies for the DOM element's own properties.</p>
 <ul>
-    <li><code>innerHTML</code> &mdash; Only allows getting the element's innerHTML, but not setting it.</li>
+    <li><code>innerHTML</code> &mdash; Allows getting the element's innerHTML, but not setting it.</li>
 </ul>
     `;
 }

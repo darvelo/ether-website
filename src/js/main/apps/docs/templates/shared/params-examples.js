@@ -13,7 +13,7 @@ export function paramsExample1() {
     bold: "true",
     font_size: "16"
 }
-// diff
+// diffs
 {
     params: {
         todo_id: [undefined, "1"],
@@ -41,15 +41,15 @@ export function paramsExample2() {
     bold: "true",
     font_size: "16"
 }
-// diff
+// diffs
 // - contains the differences vs. the last call
-// - a param is null if no difference
+// - a param is not included if no difference
 // - a base property is null is none of its params differed (like queryParams here)
-// - the entire diff argument is null if neither base property had any differences
+// - the entire diffs argument is null if neither base property had any differences
 {
     params: {
         todo_id: ["1", "2"]
-        // "action" missing since there was no difference from the last call
+        // "action" omitted since there was no difference from the last call
     },
     // no difference in any of the queryParams compared to the last call
     queryParams: null

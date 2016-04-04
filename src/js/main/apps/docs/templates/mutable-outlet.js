@@ -1,7 +1,7 @@
 export default function() {
     return `
 <h1>MutableOutlet</h1>
-<p>A MutableOutlet's purpose is to wrap a DOM element and proxy access to it and its methods and properties. It also allows direct access to the element itself, and the ability to wrap a different element instead.</p>
+<p>A MutableOutlet's purpose is to wrap a DOM element and proxy access to it and to select methods and properties. It also allows direct access to the element itself, and the ability to wrap a different element instead.</p>
 
 <h2>Constructor</h2>
 <p><code>new MutableOutlet(element)</code> &mdash; Takes a DOM element and stores it internally.</p>

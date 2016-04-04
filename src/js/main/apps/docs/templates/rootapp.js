@@ -2,9 +2,12 @@ export default function rootappTemplate() {
     return `
 <h1>RootApp</h1>
 
-<p>Most methods and properties are shared with <code>App</code> and <code>Route</code>. Please see the section Shared Methods and Properties for details.</p>
+<p>Most methods and properties on <code>RootApp</code> are shared with <code>App</code> and <code>Route</code>. Please see the section Shared Methods and Properties for details.</p>
 
 <p>What follows are the methods, properties, and options unique to <code>RootApp</code>.</p>
+
+<h2>Constructor</h2>
+<p><code>RootApp.create(opts)</code> &mdash; Creates an instance configured with the options hash passed in.</p>
 
 <h2>Constructor Options</h2>
 
@@ -47,7 +50,7 @@ export default function rootappTemplate() {
 <h4>Function arguments</h4>
 <ol>
     <li><code>event</code> &mdash; The click event object.</li>
-    <li><code>promise</code> &mdash; The navigation promise: resolves if navigation succeeds and rejects if no route was found for the URL in the link's href value (404).</li>
+    <li><code>promise</code> &mdash; The navigation promise: resolves if navigation succeeds and rejects if no route was found for the URL in the link's href attribute (404).</li>
 </ol>
 
 <h3><code>basePath</code></h3>
@@ -57,10 +60,10 @@ export default function rootappTemplate() {
 <p>A hash of Outlets or MutableOutlets. These are passed to the RootApp instance's <code>createOutlets()</code> method.</p>
 
 <h3><code>stripTrailingSlash</code></h3>
-<p>Ensures that any URL passed into <code>navigate()</code> has its trailing slash removed before Ether begins searching for a route for the URL.</p>
+<p>Ensures that any URL passed into <code>navigate()</code> has its trailing slash removed (if one exists) before Ether begins searching for a route for the URL. All hrefs returned by the <code>linkTo()</code> method will not have a trailing slash.</p>
 
 <h3><code>addTrailingSlash</code></h3>
-<p>Ensures that any URL passed into <code>navigate()</code> has a trailing slash appended (if one doesn't already exist) before Ether begins searching for a route for the URL.</p>
+<p>Ensures that any URL passed into <code>navigate()</code> has a trailing slash appended (if one doesn't already exist) before Ether begins searching for a route for the URL. All hrefs returned by the <code>linkTo()</code> method will have a trailing slash.</p>
 
 
 <h2>Methods</h2>

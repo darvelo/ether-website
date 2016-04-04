@@ -2,7 +2,7 @@ import { escapeHTML } from 'utils';
 
 export default function mountExample() {
     return escapeHTML`
-class MyRootRoute {
+class MyRootApp {
     // ...
     mount() {
         return {
