@@ -4,9 +4,10 @@
   "description": "The website for the Ether JavaScript framework.",
   "main": "index.js",
   "scripts": {
-    "build": "BABEL_ENV=build node rollup-main.js",
-    "utils": "BABEL_ENV=build node rollup-utils.js",
+    "build": "npm run main && npm run app && npm run utils && npm run css",
+    "main": "BABEL_ENV=build node rollup-main.js",
     "app": "BABEL_ENV=build node rollup-app.js",
+    "utils": "BABEL_ENV=build node rollup-utils.js",
     "css": "./node_modules/postcss-cli/bin/postcss -u postcss-cssnext -d ./public/styles ./src/css/*.css",
     "watch-css": "./node_modules/postcss-cli/bin/postcss -w -u postcss-cssnext -d ./public/styles ./src/css/**/*.css"
   },
