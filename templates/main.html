@@ -16,6 +16,7 @@
         <script src="/static/scripts/utils.js"></script>
         <script src="/static/scripts/main.js"></script>
         <script>
+        {% if env == 'development' %}
             window.addEventListener('load', function() {
                 var ws = new WebSocket("ws://localhost:9001/");
                 ws.onmessage = function(e) {
@@ -29,6 +30,7 @@
                     }
                 };
             }, false);
+        {% endif %}
 
             function all(event, promise) {
                 var self = this;

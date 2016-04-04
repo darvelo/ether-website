@@ -4,8 +4,11 @@ import os
 from time import sleep
 from threading import Thread
 import requests
-from flask import Flask, json, jsonify, send_from_directory, send_file
-from wsserver import ws_server
+from flask import Flask, jsonify, render_template
+
+env = os.environ.get('ENV', 'production')
+if env == 'development':
+    from wsserver import ws_server
 
 app = Flask(__name__)
 tweets = {}
@@ -31,12 +34,12 @@ def twitter_json(twitter_username, tweet_id):
 @app.route('/app/', defaults={'path': ''})
 @app.route('/app/<path:path>')
 def twitter_app(path):
-    return app.send_static_file('pages/app.html')
+    return render_template('app.html')
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    return app.send_static_file('pages/main.html')
+    return render_template('main.html', env=env)
 
 def css_watch():
     filename = './static/styles/main.css'
@@ -49,6 +52,7 @@ def css_watch():
         sleep(1)
 
 if __name__ == '__main__':
-    css_watch_thread = Thread(target=css_watch, daemon=True)
-    css_watch_thread.start()
+    if env == 'development':
+        css_watch_thread = Thread(target=css_watch, daemon=True)
+        css_watch_thread.start()
     app.run(debug=False)
