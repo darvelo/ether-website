@@ -6,10 +6,10 @@ export default function indexTemplate() {
                 <div class="lead download-links">
                     <a class="btn download-btn-start" href="https://github.com/darvelo/ether">Download Ether</a>
                     <div class="download-choices">
-                        <a class="btn download-btn-option" href="https://github.com/darvelo/ether">ES6</a>
-                        <a class="btn download-btn-option" href="https://github.com/darvelo/ether">AMD</a>
-                        <a class="btn download-btn-option" href="https://github.com/darvelo/ether">CommonJS</a>
-                        <a class="btn download-btn-option" href="https://github.com/darvelo/ether">Global</a>
+                        <a class="btn download-btn-option" href="https://github.com/darvelo/ether/releases/download/v1.0.0/ether.es6.js">ES6</a>
+                        <a class="btn download-btn-option" href="https://github.com/darvelo/ether/releases/download/v1.0.0/ether.amd.js">AMD</a>
+                        <a class="btn download-btn-option" href="https://github.com/darvelo/ether/releases/download/v1.0.0/ether.cjs.js">CommonJS</a>
+                        <a class="btn download-btn-option" href="https://github.com/darvelo/ether/releases/download/v1.0.0/ether.global.js">Global</a>
                     </div>
                 </div>
             </section>
