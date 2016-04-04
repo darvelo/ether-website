@@ -1,7 +1,7 @@
 export default function highlightCode(outlet) {
     return new Promise(resolve => {
         let slice = Array.prototype.slice;
-        let worker = new Worker('/public/vendor/scripts/highlight-worker.js');
+        let worker = new Worker('/static/vendor/scripts/highlight-worker.js');
         let types = {
             html: {
                 done: false,

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 from time import sleep
 from threading import Thread
@@ -5,7 +7,7 @@ import requests
 from flask import Flask, json, jsonify, send_from_directory, send_file
 from wsserver import ws_server
 
-app = Flask(__name__, static_folder='public', static_url_path='/public')
+app = Flask(__name__)
 tweets = {}
 
 @app.route("/twitter_json/<twitter_username>/<tweet_id>")
@@ -37,7 +39,7 @@ def catch_all(path):
     return app.send_static_file('pages/main.html')
 
 def css_watch():
-    filename = './public/styles/main.css'
+    filename = './static/styles/main.css'
     file_size_stored = os.stat(filename).st_mtime
     while True:
         file_size_current = os.stat(filename).st_mtime

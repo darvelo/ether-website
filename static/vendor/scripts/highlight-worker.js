@@ -1,4 +1,4 @@
-importScripts('/public/vendor/scripts/highlight.pack.js');
+importScripts('/static/vendor/scripts/highlight.pack.js');
 
 var unescape = {
     '&amp;': '&',

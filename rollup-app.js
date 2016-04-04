@@ -1,7 +1,7 @@
 var rollup = require('rollup');
 var babel = require('rollup-plugin-babel');
 
-var dest = 'public/scripts/';
+var dest = 'static/scripts/';
 var banner = '/* My Twitter App */';
 
 rollup.rollup({

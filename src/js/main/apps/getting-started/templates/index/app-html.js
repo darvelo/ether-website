@@ -4,8 +4,8 @@ export default function() {
     return escapeHTML`
 <div id="twitter"></div>
 
-<script src="/public/vendor/scripts/ether.global.js"></script>
-<script src="/public/scripts/app.js"></script>
+<script src="/static/vendor/scripts/ether.global.js"></script>
+<script src="/static/scripts/app.js"></script>
 <script>
     function updatePathbar(event, promise) {
         var self = this;
