@@ -14,7 +14,7 @@ export default function gettingStartedIndexTemplate(ctx) {
     <section class="tutorial">
         <h1>Getting Started</h1>
         <p>Welcome to development with Ether! This page will ease you into learning the three major components in Ether and how they work together. They are <code>RootApp</code>, <code>App</code>, and <code>Route</code>.</p>
-        <p>We've built <a href="/app/" target="_blank">a small example app</a> and posted the <a href="https://github.com/darvelo/ether-website/tree/master/src/js/app">source code</a> on GitHub. Here's the app in action:</p>
+        <p>We've built <a href="/app/" target="_blank">a small example app</a> and posted the <a href="https://github.com/darvelo/ether-website/tree/master/src/js/app" target="_blank">source code</a> on GitHub. Here's the app in action:</p>
         <iframe id="app-iframe" src="/app/"></iframe>
     </section>
 
@@ -29,7 +29,7 @@ export default function gettingStartedIndexTemplate(ctx) {
 
     <section class="tutorial">
         <h2>RootApp</h2>
-        <p>A RootApp is the starting point for the whole application and the only constructor you call explicitly. Let's <a href="https://github.com/darvelo/ether-website/blob/master/src/js/app/root-app.js">check out the code</a> and see how it works.</p>
+        <p>A RootApp is the starting point for the whole application and the only constructor you call explicitly. Let's <a href="https://github.com/darvelo/ether-website/blob/master/src/js/app/root-app.js" target="_blank">check out the code</a> and see how it works.</p>
         <pre><code class="hljs js">${twitterRootAppJS()}</code></pre>
         <p>This may look a bit intimidating, but about 50% of all you need to know to use Ether is in these four methods. We'll break it down by method.</p>
         <p><strong>Note:</strong> If you're not using ES2015, you can use the extend() method on each of the major classes, such as <code>RootApp.extend()</code>, instead of the <code>class ... extends ...</code> syntax. Be aware that the import file structure has no particular meaning, so you're free to use whatever file structure you like.</p>
@@ -90,9 +90,9 @@ export default function gettingStartedIndexTemplate(ctx) {
         <p>It may seem strange to decouple the address names and their handler functions into two methods, but there's a good reason: it makes class reuse easier. Subclasses can override expectedAddresses() while leaving addressesHandlers() untouched.</p>
 
         <h3>TwitterRoute</h3>
-        <p>The <a href="https://github.com/darvelo/ether-website/blob/master/src/js/app/routes/twitter.js">TwitterRoute</a> shows the contents of a tweet. Let's dive in.</p>
+        <p>The <a href="https://github.com/darvelo/ether-website/blob/master/src/js/app/routes/twitter.js" target="_blank">TwitterRoute</a> shows the contents of a tweet. Let's dive in.</p>
         <pre><code class="hljs js">${twitterTwitterRouteJS()}</code></pre>
-        <p>From what we've learned before, we know that TwitterRoute goes by the <code>'twitter'</code> address, but since we don't need it to handle any data we use an empty function to handle sendTo() calls on that address. init() creates a <a href="https://github.com/darvelo/ether-website/blob/master/src/js/app/views/tweet.js">simple view</a> and appends its element to the outlet guaranteed to exist by expectedOutlets(), and uses the data passed in through .setup() to create and append to the outlet what is essentially a back button.</p>
+        <p>From what we've learned before, we know that TwitterRoute goes by the <code>'twitter'</code> address, but since we don't need it to handle any data we use an empty function to handle sendTo() calls on that address. init() creates a <a href="https://github.com/darvelo/ether-website/blob/master/src/js/app/views/tweet.js" target="_blank">simple view</a> and appends its element to the outlet guaranteed to exist by expectedOutlets(), and uses the data passed in through .setup() to create and append to the outlet what is essentially a back button.</p>
 
         <p>What's really interesting is the new prerender()/deactivate()/render() functions. These are called when the user navigates to, or away from, a Route or App.</p>
         <p>The TwitterRoute is rendered when the user navigates to the URL <code>'/app/{twitter_username=\\\\w+}/{tweet_id=\\\\d+}'</code>. Since expectedParams() lists both params, the route will have both <code>twitter_username</code> and <code>tweet_id</code> available in the <code>params</code> argument of its prerender() and render() methods. Also, any query params in the URL will be in the <code>queryParams</code> argument. The <code>diff</code> argument is the difference between the params and queryParams parsed from the current URL vs. the URL that last rendered the class. If there was no difference, the value will be null.</p>
