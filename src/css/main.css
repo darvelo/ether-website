@@ -1,7 +1,7 @@
 @custom-media --medium-viewport (width >= 768px);
 @custom-media --large-viewport (width >= 1200px);
 @custom-selector :--main-pages .index, .getting-started, .guides, .docs, .the404;
-@custom-selector :--code-pages .getting-started, .docs-shared-methods;
+@custom-selector :--code-pages .getting-started, .docs-shared-methods, .guides-render-cycle;
 
 @keyframes fade-out {
    0% {
@@ -407,6 +407,7 @@ h1, h2, h3, h4, h5, h6 {
 .docs-article {
    padding: 1.5rem 0;
    width: 75%;
+   flex: 0 0 auto;
 }
 
 .guides nav,
@@ -440,8 +441,7 @@ h1, h2, h3, h4, h5, h6 {
    }
 }
 
-/* docs */
-
+.guides-article,
 .docs-article {
    & h2 {
       margin-top: 3rem;
@@ -460,6 +460,11 @@ h1, h2, h3, h4, h5, h6 {
       color: black;
       vertical-align: bottom;
    }
+}
+
+.guides-article pre {
+   background: white;
+   color: black;
 }
 
 /* 404 */

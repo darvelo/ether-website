@@ -1,4 +1,5 @@
-import { ScrollRoute } from 'utils';
+import { ScrollRoute, highlightCode } from 'utils';
+import template from '../templates/render-cycle';
 
 class RenderCycleRoute extends ScrollRoute {
     expectedAddresses() {
@@ -11,17 +12,31 @@ class RenderCycleRoute extends ScrollRoute {
         return ['rendercycle'];
     }
 
-    init() {
-        // use the 4 cases from test/acceptance/navigation
+    addHighlightedClass(outlet) {
+        outlet.el.classList.add('highlighted');
+    }
 
-        let h1 = document.createElement('h1');
-        h1.textContent = 'The Render Cycle';
-        this.outlets.rendercycle.appendChild(h1);
+    init() {
+        let hrefs = {
+            rootAppDocs: this.linkTo(':docs.rootapp'),
+            sharedMethods: this.linkTo(':docs.shared'),
+        };
+        let outlet = this.outlets.rendercycle;
+        outlet.innerHTML = template({hrefs});
+        if (window.Worker) {
+            this.highlighted = highlightCode(outlet).then(() => {
+                this.addHighlightedClass(outlet);
+            });
+        } else {
+            this.highlighted = null;
+            this.addHighlightedClass(outlet);
+        }
     }
 
     render() {
         super.render();
         this.sendTo(':guides.sidebar', 'setActiveLink', this.expectedAddresses());
+        return this.highlighted;
     }
 }
 

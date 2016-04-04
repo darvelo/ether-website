@@ -54,7 +54,7 @@ class GuidesApp extends App {
                 }),
                 outlets.rendercycle = makeOutlet({
                     tagName: 'article',
-                    classNames: ['guides-article'],
+                    classNames: ['guides-article', 'guides-render-cycle'],
                     mutable: true,
                 }),
                 outlets.reusingclasses = makeOutlet({
@@ -76,7 +76,7 @@ class GuidesApp extends App {
             '': IndexRoute
                     .addresses(':guides.index')
                     .outlets('index'),
-            'render-cycle':
+            'the-render-cycle':
                 RenderCycleRoute
                     .addresses(':guides.rendercycle')
                     .outlets('rendercycle'),
