@@ -1,4 +1,5 @@
 import { ScrollRoute } from 'utils';
+import template from '../templates/index';
 
 class IndexRoute extends ScrollRoute {
     expectedAddresses() {
@@ -12,9 +13,8 @@ class IndexRoute extends ScrollRoute {
     }
 
     init() {
-        let h1 = document.createElement('h1');
-        h1.textContent = 'Overview';
-        this.outlets.index.appendChild(h1);
+        let outlet = this.outlets.index;
+        outlet.innerHTML = template();
     }
 
     render() {
