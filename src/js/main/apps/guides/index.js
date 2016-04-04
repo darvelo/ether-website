@@ -21,10 +21,10 @@ function addSidebarLinksData() {
             text: 'Reusing Classes',
             address: ':guides.reusingclasses',
         },
-        {
-            text: 'Best Practices',
-            address: ':guides.bestpractices',
-        },
+        // {
+        //     text: 'Best Practices',
+        //     address: ':guides.bestpractices',
+        // },
     ];
 }
 
@@ -62,11 +62,11 @@ class GuidesApp extends App {
                     classNames: ['guides-article'],
                     mutable: true,
                 }),
-                outlets.bestpractices = makeOutlet({
-                    tagName: 'article',
-                    classNames: ['guides-article'],
-                    mutable: true,
-                }),
+                // outlets.bestpractices = makeOutlet({
+                //     tagName: 'article',
+                //     classNames: ['guides-article'],
+                //     mutable: true,
+                // }),
             ],
         });
         return outlets;
@@ -84,10 +84,10 @@ class GuidesApp extends App {
                 ReusingClassesRoute
                     .addresses(':guides.reusingclasses')
                     .outlets('reusingclasses'),
-            'best-practices':
-                BestPracticesRoute
-                    .addresses(':guides.bestpractices')
-                    .outlets('bestpractices'),
+            // 'best-practices':
+            //     BestPracticesRoute
+            //         .addresses(':guides.bestpractices')
+            //         .outlets('bestpractices'),
         };
     }
     mountConditionals() {

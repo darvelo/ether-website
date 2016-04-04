@@ -1,4 +1,5 @@
 import { ScrollRoute } from 'utils';
+import template from '../templates/reusing-classes';
 
 class ReusingClassesRoute extends ScrollRoute {
     expectedAddresses() {
@@ -12,11 +13,8 @@ class ReusingClassesRoute extends ScrollRoute {
     }
 
     init() {
-        // use the 4 cases from test/acceptance/navigation
-
-        let h1 = document.createElement('h1');
-        h1.textContent = 'Reusing Classes';
-        this.outlets.reusingclasses.appendChild(h1);
+        let outlet = this.outlets.reusingclasses;
+        outlet.innerHTML = template();
     }
 
     render() {
