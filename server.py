@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import os
 from time import sleep
 from threading import Thread
@@ -53,6 +51,7 @@ def css_watch():
 
 if __name__ == '__main__':
     if env == 'development':
-        css_watch_thread = Thread(target=css_watch, daemon=True)
+        css_watch_thread = Thread(target=css_watch)
+        css_watch_thread.daemon = True
         css_watch_thread.start()
     app.run(debug=False)

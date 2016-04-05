@@ -29,5 +29,6 @@ def start_websocket_server(server):
 
 PORT=9001
 ws_server = WebsocketServer(PORT)
-thread = Thread(target=start_websocket_server, args=(ws_server,), daemon=True)
+thread = Thread(target=start_websocket_server, args=(ws_server,))
+thread.daemon = True
 thread.start()
