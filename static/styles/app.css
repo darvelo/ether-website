@@ -1,0 +1,185 @@
+.twitter-app {
+    position: relative;
+    margin: 0 auto;
+    width: 700px;
+    height: 200px;
+    background: rgb(228, 201, 255);
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 3px rgb(138, 138, 138);
+}
+
+.twitter-app .nav-button {
+    padding: 14px 20px;
+    color: white;
+    background-color: hsl(273, 65%, 55%);
+    text-decoration: none;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: 0 8px rgb(119, 25, 149), inset 0 0 10px rgba(237, 194, 255, 0.33)
+}
+
+.twitter-app .nav-button:active {
+    position: relative;
+    top: 5px;
+    box-shadow: 0 3px rgb(119, 25, 149), inset 0 0 10px rgba(237, 194, 255, 0.33);
+}
+
+@-webkit-keyframes bounce-down {
+    0% {
+        top: 30px;
+        opacity: 1;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        top: 120%;
+    }
+}
+
+@keyframes bounce-down {
+    0% {
+        top: 30px;
+        opacity: 1;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        top: 120%;
+    }
+}
+
+@-webkit-keyframes bounce-up {
+    0% {
+        top: 120%;
+    }
+    20% {
+        opacity: 0;
+    }
+    100% {
+        top: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes bounce-up {
+    0% {
+        top: 120%;
+    }
+    20% {
+        opacity: 0;
+    }
+    100% {
+        top: 30px;
+        opacity: 1;
+    }
+}
+
+.twitter-app .root,
+.twitter-app .tweet-container {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 30px)
+}
+
+.twitter-app .root.ether-prerendering,
+.twitter-app .tweet-container.ether-prerendering,
+.twitter-app .root.ether-prerendered,
+.twitter-app .tweet-container.ether-prerendered,
+.twitter-app .root.ether-deactivated,
+.twitter-app .tweet-container.ether-deactivated {
+    display: none;
+}
+
+.twitter-app .root.ether-deactivating,
+.twitter-app .tweet-container.ether-deactivating {
+    -webkit-animation: 0.4s cubic-bezier(0.60, -.50, .50, 1) forwards bounce-down;
+            animation: 0.4s cubic-bezier(0.60, -.50, .50, 1) forwards bounce-down;
+}
+
+.twitter-app .root.ether-rendering,
+.twitter-app .tweet-container.ether-rendering,
+.twitter-app .root.ether-rendered,
+.twitter-app .tweet-container.ether-rendered {
+    -webkit-animation: 0.4s cubic-bezier(.50, 0, 0.40, 1.50) bounce-up;
+            animation: 0.4s cubic-bezier(.50, 0, 0.40, 1.50) bounce-up;
+}
+
+/* Pathbar Route */
+
+.twitter-app .pathbar {
+    position: relative;
+    z-index: 1;
+}
+
+.twitter-app .pathbar .pathname {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0;
+    height: 30px;
+    border-radius: 15px
+}
+
+.twitter-app .pathbar .pathname span {
+    -webkit-box-flex: 1;
+    -webkit-flex: auto;
+        -ms-flex: auto;
+            flex: auto;
+    padding: 5px;
+    font: 16px 'Trebuchet MS', Verdana, sans-serif;
+}
+
+.twitter-app .pathbar .pathname .prefix {
+    -webkit-flex-basis: max-content;
+        -ms-flex-preferred-size: max-content;
+            flex-basis: max-content;
+    background: rgb(232, 232, 232);
+    font-style: italic;
+    padding: 5px 10px;
+
+    /* fix chrome rendering bug */
+    border-top-left-radius: 15px;
+}
+
+.twitter-app .pathbar .pathname .value {
+    background: white;
+    -webkit-box-flex: 100%;
+    -webkit-flex: 100%;
+        -ms-flex: 100%;
+            flex: 100%;
+
+    /* fix chrome rendering bug */
+    border-top-right-radius: 15px;
+}
+
+/* Root Route */
+
+.twitter-app .root {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+/* Twitter Route */
+
+.twitter-app .tweet-container .nav-button {
+    display: block;
+    margin: 0 auto;
+    max-width: 50px;
+    text-align: center;
+}

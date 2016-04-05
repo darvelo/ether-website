@@ -30,5 +30,5 @@ Session.vim
 *.sqlite3
 
 # this project
-static/scripts
-static/styles
+#static/scripts
+#static/styles
