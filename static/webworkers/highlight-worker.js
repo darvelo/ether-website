@@ -30,7 +30,7 @@ function highlightBlockJS(block) {
 };
 
 onmessage = function(event) {
-    let highlightFn;
+    var highlightFn;
     switch(event.data.type) {
         case 'html':
             highlightFn = highlightBlockHTML;
@@ -45,7 +45,7 @@ onmessage = function(event) {
             throw new Error('unsupported highlight type in web worker: ' + event.data.type);
             break;
     }
-    var result = event.data.blocks.map(highlightFn).map(h => h.value);
+    var result = event.data.blocks.map(highlightFn).map(function(h) { return h.value; });
     postMessage({
         type: event.data.type,
         blocks: result,
