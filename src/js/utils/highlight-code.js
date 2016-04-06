@@ -1,43 +1,51 @@
+import uuid from 'uuid';
+
+let worker = new Worker('/static/webworkers/highlight-worker.js');
+
 export default function highlightCode(outlet) {
     return new Promise(resolve => {
         let slice = Array.prototype.slice;
-        let worker = new Worker('/static/webworkers/highlight-worker.js');
-        let types = {
-            html: {
+        let jobs = {};
+        ['html', 'css', 'js'].forEach(ft => {
+            let id = uuid.v4();
+            let els = slice.call(outlet.querySelectorAll(`pre code.${ft}`));
+            jobs[id] = {
+                id,
+                ft,
                 done: false,
-                blocks: slice.call(outlet.querySelectorAll('pre code.html')),
-            },
-            css: {
-                done: false,
-                blocks: slice.call(outlet.querySelectorAll('pre code.css')),
-            },
-            js: {
-                done: false,
-                blocks: slice.call(outlet.querySelectorAll('pre code.js')),
-            }
-        };
+                els,
+            };
+        });
 
         function allDone() {
-            return Object.keys(types).every(type => types[type].done);
+            return Object.keys(jobs).every(id => jobs[id].done);
         }
 
-        worker.onmessage = (event) => {
-            let t = types[event.data.type];
+        function onMessage(event) {
+            let job = jobs[event.data.id];
+            if (!job) {
+                return;
+            }
+
             let blocks = event.data.blocks;
-            t.blocks.forEach((block, i) => {
-                block.innerHTML = blocks[i];
+            job.els.forEach((el, i) => {
+                el.innerHTML = blocks[i];
             });
-            t.done = true;
+            job.done = true;
             if (allDone()) {
-                worker.terminate();
+                worker.removeEventListener('message', onMessage, false);
                 resolve();
             }
-        };
+        }
 
-        Object.keys(types).forEach(type => {
+        worker.addEventListener('message', onMessage, false);
+
+        Object.keys(jobs).forEach(id => {
+            let job = jobs[id];
             worker.postMessage({
-                type,
-                blocks: types[type].blocks.map(block => block.innerHTML)
+                id: job.id,
+                ft: job.ft,
+                blocks: job.els.map(el => el.innerHTML)
             });
         });
     });

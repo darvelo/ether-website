@@ -33,6 +33,7 @@
     "rollup-plugin-uglify": "^0.2.0"
   },
   "dependencies": {
+    "node-uuid": "^1.4.7",
     "normalize.css": "^4.0.0"
   }
 }

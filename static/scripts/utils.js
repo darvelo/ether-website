@@ -1,5 +1,7 @@
-(function (exports,ether) {
+(function (exports,ether,uuid) {
     'use strict';
+
+    uuid = 'default' in uuid ? uuid['default'] : uuid;
 
     var babelHelpers = {};
 
@@ -150,49 +152,55 @@
         return ScrollRoute;
     }(ether.Route);
 
+    var worker = new Worker('/static/webworkers/highlight-worker.js');
+
     function highlightCode(outlet) {
         return new Promise(function (resolve) {
             var slice = Array.prototype.slice;
-            var worker = new Worker('/static/webworkers/highlight-worker.js');
-            var types = {
-                html: {
+            var jobs = {};
+            ['html', 'css', 'js'].forEach(function (ft) {
+                var id = uuid.v4();
+                var els = slice.call(outlet.querySelectorAll('pre code.' + ft));
+                jobs[id] = {
+                    id: id,
+                    ft: ft,
                     done: false,
-                    blocks: slice.call(outlet.querySelectorAll('pre code.html'))
-                },
-                css: {
-                    done: false,
-                    blocks: slice.call(outlet.querySelectorAll('pre code.css'))
-                },
-                js: {
-                    done: false,
-                    blocks: slice.call(outlet.querySelectorAll('pre code.js'))
-                }
-            };
+                    els: els
+                };
+            });
 
             function allDone() {
-                return Object.keys(types).every(function (type) {
-                    return types[type].done;
+                return Object.keys(jobs).every(function (id) {
+                    return jobs[id].done;
                 });
             }
 
-            worker.onmessage = function (event) {
-                var t = types[event.data.type];
+            function onMessage(event) {
+                var job = jobs[event.data.id];
+                if (!job) {
+                    return;
+                }
+
                 var blocks = event.data.blocks;
-                t.blocks.forEach(function (block, i) {
-                    block.innerHTML = blocks[i];
+                job.els.forEach(function (el, i) {
+                    el.innerHTML = blocks[i];
                 });
-                t.done = true;
+                job.done = true;
                 if (allDone()) {
-                    worker.terminate();
+                    worker.removeEventListener('message', onMessage, false);
                     resolve();
                 }
-            };
+            }
 
-            Object.keys(types).forEach(function (type) {
+            worker.addEventListener('message', onMessage, false);
+
+            Object.keys(jobs).forEach(function (id) {
+                var job = jobs[id];
                 worker.postMessage({
-                    type: type,
-                    blocks: types[type].blocks.map(function (block) {
-                        return block.innerHTML;
+                    id: job.id,
+                    ft: job.ft,
+                    blocks: job.els.map(function (el) {
+                        return el.innerHTML;
                     })
                 });
             });
@@ -209,4 +217,4 @@
     exports.highlightCode = highlightCode;
     exports['default'] = index;
 
-}((this.utils = this.utils || {}),Ether));
+}((this.utils = this.utils || {}),Ether,uuid));

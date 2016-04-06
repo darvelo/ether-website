@@ -19,6 +19,7 @@ rollup.rollup({
             dest: dest + 'utils.js',
             globals: {
                 ether: 'Ether',
+                uuid: 'uuid',
             },
         }),
     ]);
