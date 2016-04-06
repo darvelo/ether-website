@@ -45,6 +45,5 @@ ${scenario2()}
 
 ${scenario3()}
 
-${scenario4()}
-    `;
+${scenario4()}`;
 }
