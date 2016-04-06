@@ -20,25 +20,6 @@
    }
 }
 
-.getting-started,
-.docs-shared-methods,
-.guides-render-cycle {
-}
-
-.getting-started pre code,
-.docs-shared-methods pre code,
-.guides-render-cycle pre code {
-   -webkit-transition: opacity 0.2s ease-out;
-   transition: opacity 0.2s ease-out;
-   opacity: 0;
-}
-
-.getting-started.highlighted pre code,
-.docs-shared-methods.highlighted pre code,
-.guides-render-cycle.highlighted pre code {
-   opacity: 1;
-}
-
 * {
    box-sizing: border-box;
 }
@@ -50,11 +31,7 @@
 }
 
 body {
-   display: -webkit-box;
-   display: -webkit-flex;
-   display: -ms-flexbox;
-   display: flex;
-   min-height: 100%;
+   min-height: 100vh;
    background-color: #FFFBF7;
    color: #986046;
    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -84,10 +61,7 @@ h1, h2, h3, h4, h5, h6 {
    -webkit-flex-direction: column;
        -ms-flex-direction: column;
            flex-direction: column;
-   -webkit-box-flex: 100%;
-   -webkit-flex: 100%;
-       -ms-flex: 100%;
-           flex: 100%;
+   min-height: 100vh;
 }
 
 .container {
@@ -106,10 +80,10 @@ h1, h2, h3, h4, h5, h6 {
 .guides,
 .docs,
 .the404 {
-   -webkit-box-flex: 100%;
-   -webkit-flex: 100%;
-       -ms-flex: 100%;
-           flex: 100%;
+   -webkit-box-flex: 1;
+   -webkit-flex: 1 0 auto;
+       -ms-flex: 1 0 auto;
+           flex: 1 0 auto
 }
 
 .index .container,
@@ -127,6 +101,25 @@ h1, h2, h3, h4, h5, h6 {
 .the404 {
    line-height: 24px;
    line-height: 1.5rem;
+}
+
+.getting-started,
+.docs-shared-methods,
+.guides-render-cycle {
+}
+
+.getting-started pre code,
+.docs-shared-methods pre code,
+.guides-render-cycle pre code {
+   -webkit-transition: opacity 0.2s ease-out;
+   transition: opacity 0.2s ease-out;
+   opacity: 0;
+}
+
+.getting-started.highlighted pre code,
+.docs-shared-methods.highlighted pre code,
+.guides-render-cycle.highlighted pre code {
+   opacity: 1;
 }
 
 /* navbar */
@@ -526,7 +519,6 @@ h1, h2, h3, h4, h5, h6 {
    display: flex;
 }
 
-.getting-started,
 .guides-nav,
 .guides-article,
 .docs-nav,
